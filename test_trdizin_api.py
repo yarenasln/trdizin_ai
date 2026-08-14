@@ -11,7 +11,11 @@ params = {
 
 # TR Dizin API'ye istek gönder
 response = requests.get(url, params=params, timeout=60)
+print("İstek URL:")
+print(response.url)
 
+print("\nStatus:")
+print(response.status_code)
 # HTTP hatası varsa burada durdur
 response.raise_for_status()
 

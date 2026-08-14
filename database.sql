@@ -19,9 +19,15 @@ CREATE TABLE article_text (
     abstract TEXT,
     keywords TEXT
 );
-
 CREATE TABLE article_subject (
     id SERIAL PRIMARY KEY,
     article_id INTEGER NOT NULL REFERENCES article(id) ON DELETE CASCADE,
-    subject VARCHAR(500) NOT NULL
+
+    subject_id INTEGER,
+    subject_name VARCHAR(500) NOT NULL,
+    subject_fullname VARCHAR(1000),
+    root_name VARCHAR(255),
+    auto_label BOOLEAN,
+
+    UNIQUE(article_id, subject_id)
 );
