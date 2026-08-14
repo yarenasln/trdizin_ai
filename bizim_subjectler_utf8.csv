@@ -1,0 +1,201 @@
+﻿subject_id,subject_name,subject_fullname
+1,Fen,Fen
+5,Tıp,Fen > Tıp
+6,Temel Bilimler,Fen > Temel Bilimler
+8,Veterinerlik,Fen > Veterinerlik
+9,Eczacılık,Fen > Eczacılık
+11,Acil Tıp,Fen > Tıp > Acil Tıp
+12,Adli Tıp,Fen > Tıp > Adli Tıp
+13,Aile Çalışmaları,Sosyal > Sosyal > Aile Çalışmaları
+14,Akustik,Fen > Temel Bilimler > Akustik
+15,Alerji,Fen > Tıp > Alerji
+16,Anatomi ve Morfoloji,Fen > Tıp > Anatomi ve Morfoloji
+17,Androloji,Fen > Tıp > Androloji
+18,Anestezi,Fen > Tıp > Anestezi
+19,Antropoloji,Sosyal > Sosyal > Antropoloji
+20,Arkeoloji,Sosyal > Sosyal > Arkeoloji
+21,Astronomi ve Astrofizik,Fen > Temel Bilimler > Astronomi ve Astrofizik
+22,Asya Çalışmaları,Sosyal > Sosyal > Asya Çalışmaları
+23,Bahçe Bitkileri,Fen > Ziraat > Bahçe Bitkileri
+24,Balıkçılık,Fen > Temel Bilimler > Balıkçılık
+25,Beslenme ve Diyetetik,Sosyal > Sosyal > Beslenme ve Diyetetik
+26,Beşeri Bilimler,Sosyal > Sosyal > Beşeri Bilimler
+27,"Bilgi, Belge Yönetimi","Sosyal > Sosyal > Bilgi, Belge Yönetimi"
+28,"Bilgisayar Bilimleri, Bilgi Sistemleri","Fen > Mühendislik > Bilgisayar Bilimleri, Bilgi Sistemleri"
+29,"Bilgisayar Bilimleri, Donanım ve Mimari","Fen > Mühendislik > Bilgisayar Bilimleri, Donanım ve Mimari"
+30,"Bilgisayar Bilimleri, Sibernitik","Fen > Mühendislik > Bilgisayar Bilimleri, Sibernitik"
+31,"Bilgisayar Bilimleri, Teori ve Metotlar","Fen > Mühendislik > Bilgisayar Bilimleri, Teori ve Metotlar"
+32,"Bilgisayar Bilimleri, Yapay Zeka","Fen > Mühendislik > Bilgisayar Bilimleri, Yapay Zeka"
+33,"Bilgisayar Bilimleri, Yazılım Mühendisliği","Fen > Mühendislik > Bilgisayar Bilimleri, Yazılım Mühendisliği"
+34,Bilim Felsefesi ve Tarihi,Sosyal > Sosyal > Bilim Felsefesi ve Tarihi
+35,Bitki Bilimleri,Fen > Ziraat > Bitki Bilimleri
+36,Biyofizik,Fen > Tıp > Biyofizik
+37,Biyokimya ve Moleküler Biyoloji,Fen > Tıp > Biyokimya ve Moleküler Biyoloji
+38,Biyoloji,Fen > Temel Bilimler > Biyoloji
+39,Biyoloji Çeşitliliğinin Korunması,Fen > Temel Bilimler > Biyoloji Çeşitliliğinin Korunması
+40,Biyoteknoloji ve Uygulamalı Mikrobiyoloji,Fen > Tıp > Biyoteknoloji ve Uygulamalı Mikrobiyoloji
+41,Cerrahi,Fen > Tıp > Cerrahi
+42,Coğrafya,Sosyal > Sosyal > Coğrafya
+43,Çevre Bilimleri,Fen > Temel Bilimler > Çevre Bilimleri
+44,Çevre Çalışmaları,Sosyal > Sosyal > Çevre Çalışmaları
+45,Çevre Mühendisliği,Fen > Mühendislik > Çevre Mühendisliği
+46,Davranış Bilimleri,Sosyal > Sosyal > Davranış Bilimleri
+47,Denizcilik,Fen > Mühendislik > Denizcilik
+48,Deniz ve Tatlı Su Biyolojisi,Fen > Temel Bilimler > Deniz ve Tatlı Su Biyolojisi
+49,Dermatoloji,Fen > Tıp > Dermatoloji
+50,Dil ve Dil Bilim,Sosyal > Sosyal > Dil ve Dil Bilim
+51,Din Bilimi,Sosyal > Sosyal > Din Bilimi
+52,Diş Hekimliği,Fen > Diş Hekimliği > Diş Hekimliği
+53,Edebi Teori ve Eleştiri,Sosyal > Sosyal > Edebi Teori ve Eleştiri
+54,Edebiyat,Sosyal > Sosyal > Edebiyat
+55,"Eğitim, Eğitim Araştırmaları","Sosyal > Sosyal > Eğitim, Eğitim Araştırmaları"
+56,"Eğitim, Özel","Sosyal > Sosyal > Eğitim, Özel"
+57,Ekoloji,Fen > Temel Bilimler > Ekoloji
+58,Endokrinoloji ve Metabolizma,Fen > Tıp > Endokrinoloji ve Metabolizma
+59,Endüstri Mühendisliği,Fen > Mühendislik > Endüstri Mühendisliği
+60,Enerji ve Yakıtlar,Fen > Mühendislik > Enerji ve Yakıtlar
+61,Enfeksiyon Hastalıkları,Fen > Tıp > Enfeksiyon Hastalıkları
+62,Entomoloji,Fen > Temel Bilimler > Entomoloji
+64,Etik,Sosyal > Sosyal > Etik
+65,Etnik Çalışmalar,Sosyal > Sosyal > Etnik Çalışmalar
+66,Farmakoloji ve Eczacılık,Fen > Eczacılık > Farmakoloji ve Eczacılık
+67,Felsefe,Sosyal > Sosyal > Felsefe
+68,"Film, Radyo, Televizyon","Sosyal > Sosyal > Film, Radyo, Televizyon"
+69,"Fizik, Akışkanlar ve Plazma","Fen > Temel Bilimler > Fizik, Akışkanlar ve Plazma"
+70,"Fizik, Atomik ve Moleküler Kimya","Fen > Temel Bilimler > Fizik, Atomik ve Moleküler Kimya"
+71,"Fizik, Katı Hal","Fen > Temel Bilimler > Fizik, Katı Hal"
+72,"Fizik, Matematik","Fen > Temel Bilimler > Fizik, Matematik"
+73,"Fizik, Nükleer","Fen > Temel Bilimler > Fizik, Nükleer"
+74,Fizikokimya,Fen > Temel Bilimler > Fizikokimya
+75,"Fizik, Partiküller ve Alanlar","Fen > Temel Bilimler > Fizik, Partiküller ve Alanlar"
+76,"Fizik, Uygulamalı","Fen > Temel Bilimler > Fizik, Uygulamalı"
+77,Fizyoloji,Fen > Tıp > Fizyoloji
+78,Folklor,Sosyal > Sosyal > Folklor
+79,Gastroenteroloji ve Hepatoloji,Fen > Tıp > Gastroenteroloji ve Hepatoloji
+80,Genel ve Dahili Tıp,Fen > Tıp > Genel ve Dahili Tıp
+81,Genetik ve Kalıtım,Fen > Temel Bilimler > Genetik ve Kalıtım
+82,Geriatri ve Gerontoloji,Fen > Tıp > Geriatri ve Gerontoloji
+83,Gıda Bilimi ve Teknolojisi,Fen > Mühendislik > Gıda Bilimi ve Teknolojisi
+84,Görüntüleme Bilimi ve Fotoğraf Teknolojisi,Fen > Mühendislik > Görüntüleme Bilimi ve Fotoğraf Teknolojisi
+85,Göz Hastalıkları,Fen > Tıp > Göz Hastalıkları
+86,Halkla İlişkiler,Sosyal > Sosyal > Halkla İlişkiler
+87,Halk ve Çevre Sağlığı,Fen > Tıp > Halk ve Çevre Sağlığı
+88,Hematoloji,Fen > Tıp > Hematoloji
+89,Hemşirelik,Sosyal > Sosyal > Hemşirelik
+90,Hukuk,Sosyal > Sosyal > Hukuk
+91,Hücre Biyolojisi,Fen > Tıp > Hücre Biyolojisi
+92,Hücre ve Doku Mühendisliği,Fen > Mühendislik > Hücre ve Doku Mühendisliği
+93,İktisat,Sosyal > Sosyal > İktisat
+94,İletişim,Sosyal > Sosyal > İletişim
+95,İmalat Mühendisliği,Fen > Mühendislik > İmalat Mühendisliği
+96,İmmünoloji,Fen > Tıp > İmmünoloji
+97,İnşaat Mühendisliği,Fen > Mühendislik > İnşaat Mühendisliği
+98,İnşaat ve Yapı Teknolojisi,Fen > Mühendislik > İnşaat ve Yapı Teknolojisi
+99,İstatistik ve Olasılık,Fen > Temel Bilimler > İstatistik ve Olasılık
+100,İş,Sosyal > Sosyal > İş
+101,İşletme,Sosyal > Sosyal > İşletme
+102,İşletme Finans,Sosyal > Sosyal > İşletme Finans
+103,Jeokimya ve Jeofizik,Fen > Mühendislik > Jeokimya ve Jeofizik
+104,Jeoloji,Fen > Mühendislik > Jeoloji
+105,Kadın Araştırmaları,Sosyal > Sosyal > Kadın Araştırmaları
+106,Kadın Hastalıkları ve Doğum,Fen > Tıp > Kadın Hastalıkları ve Doğum
+107,Kalp ve Kalp Damar Sistemi,Fen > Tıp > Kalp ve Kalp Damar Sistemi
+108,Kamu Yönetimi,Sosyal > Sosyal > Kamu Yönetimi
+109,Kentsel Çalışmalar,Sosyal > Sosyal > Kentsel Çalışmalar
+110,"Kimya, Analitik","Fen > Temel Bilimler > Kimya, Analitik"
+111,"Kimya, İnorganik ve Nükleer","Fen > Temel Bilimler > Kimya, İnorganik ve Nükleer"
+112,"Kimya, Organik","Fen > Temel Bilimler > Kimya, Organik"
+113,"Kimya, Tıbbi","Fen > Temel Bilimler > Kimya, Tıbbi"
+114,"Kimya, Uygulamalı","Fen > Temel Bilimler > Kimya, Uygulamalı"
+115,Klinik Nöroloji,Fen > Tıp > Klinik Nöroloji
+116,Kriminoloji ve Ceza Bilimi,Sosyal > Sosyal > Kriminoloji ve Ceza Bilimi
+117,"Kulak, Burun, Boğaz","Fen > Tıp > Kulak, Burun, Boğaz"
+118,Kuş Bilimi,Fen > Temel Bilimler > Kuş Bilimi
+119,Kültürel Çalışmalar,Sosyal > Sosyal > Kültürel Çalışmalar
+120,Limnoloji,Fen > Temel Bilimler > Limnoloji
+121,Madde Bağımlılığı,Sosyal > Sosyal > Madde Bağımlılığı
+122,Maden İşletme ve Cevher Hazırlama,Fen > Mühendislik > Maden İşletme ve Cevher Hazırlama
+123,"Malzeme Bilimleri, Biyomalzemeler","Fen > Mühendislik > Malzeme Bilimleri, Biyomalzemeler"
+124,"Malzeme Bilimleri, Kâğıt ve Ahşap","Fen > Mühendislik > Malzeme Bilimleri, Kâğıt ve Ahşap"
+125,"Malzeme Bilimleri, Kaplamalar ve Filmler","Fen > Mühendislik > Malzeme Bilimleri, Kaplamalar ve Filmler"
+126,"Malzeme Bilimleri, Kompozitler","Fen > Mühendislik > Malzeme Bilimleri, Kompozitler"
+127,"Malzeme Bilimleri, Özellik ve Test","Fen > Mühendislik > Malzeme Bilimleri, Özellik ve Test"
+128,"Malzeme Bilimleri, Seramik","Fen > Mühendislik > Malzeme Bilimleri, Seramik"
+129,"Malzeme Bilimleri, Tekstil","Fen > Mühendislik > Malzeme Bilimleri, Tekstil"
+130,Mantar Bilimi,Fen > Temel Bilimler > Mantar Bilimi
+131,Mantık,Sosyal > Sosyal > Mantık
+132,Matematik,Fen > Temel Bilimler > Matematik
+133,Metalürji Mühendisliği,Fen > Mühendislik > Metalürji Mühendisliği
+134,Meteoroloji ve Atmosferik Bilimler,Fen > Mühendislik > Meteoroloji ve Atmosferik Bilimler
+135,Mikrobiyoloji,Fen > Tıp > Mikrobiyoloji
+136,Mikroskopi,Fen > Temel Bilimler > Mikroskopi
+137,Mimarlık,Fen > Mühendislik > Mimarlık
+138,Mineraloji,Fen > Temel Bilimler > Mineraloji
+139,"Mühendislik, Biyotıp","Fen > Mühendislik > Mühendislik, Biyotıp"
+140,"Mühendislik, Deniz","Fen > Mühendislik > Mühendislik, Deniz"
+141,"Mühendislik, Elektrik ve Elektronik","Fen > Mühendislik > Mühendislik, Elektrik ve Elektronik"
+142,"Mühendislik, Hava ve Uzay","Fen > Mühendislik > Mühendislik, Hava ve Uzay"
+143,"Mühendislik, Jeoloji","Fen > Mühendislik > Mühendislik, Jeoloji"
+144,"Mühendislik, Kimya","Fen > Mühendislik > Mühendislik, Kimya"
+145,"Mühendislik, Makine","Fen > Mühendislik > Mühendislik, Makine"
+146,"Mühendislik, Petrol","Fen > Mühendislik > Mühendislik, Petrol"
+147,Müzik,Sosyal > Sosyal > Müzik
+148,Nanobilim ve Nanoteknoloji,Fen > Mühendislik > Nanobilim ve Nanoteknoloji
+149,Nörolojik Bilimler,Fen > Tıp > Nörolojik Bilimler
+150,Nüfus İstatistikleri Bilimi,Sosyal > Sosyal > Nüfus İstatistikleri Bilimi
+151,Nükleer Bilim ve Teknolojisi,Fen > Mühendislik > Nükleer Bilim ve Teknolojisi
+152,Odyoloji ve Konuşma-Dil Patolojisi,Fen > Tıp > Odyoloji ve Konuşma-Dil Patolojisi
+153,Onkoloji,Fen > Tıp > Onkoloji
+154,Optik,Fen > Temel Bilimler > Optik
+155,Orman Mühendisliği,Fen > Mühendislik > Orman Mühendisliği
+156,Ortaçağ ve Rönesans Çalışmaları,Sosyal > Sosyal > Ortaçağ ve Rönesans Çalışmaları
+157,Ortopedi,Fen > Tıp > Ortopedi
+158,Oşinografi,Fen > Temel Bilimler > Oşinografi
+159,"Otelcilik, Konaklama, Spor ve Turizm","Sosyal > Sosyal > Otelcilik, Konaklama, Spor ve Turizm"
+160,Paleontoloji,Fen > Temel Bilimler > Paleontoloji
+161,Parazitoloji,Fen > Temel Bilimler > Parazitoloji
+162,Patoloji,Fen > Tıp > Patoloji
+163,Pediatri,Fen > Tıp > Pediatri
+164,Periferik Damar Hastalıkları,Fen > Tıp > Periferik Damar Hastalıkları
+165,Polimer Bilimi,Fen > Mühendislik > Polimer Bilimi
+166,Psikiyatri,Fen > Tıp > Psikiyatri
+167,Psikoloji,Sosyal > Sosyal > Psikoloji
+168,"Radyoloji, Nükleer Tıp, Tıbbi Görüntüleme","Fen > Tıp > Radyoloji, Nükleer Tıp, Tıbbi Görüntüleme"
+169,Rehabilitasyon,Fen > Tıp > Rehabilitasyon
+170,Robotik,Fen > Mühendislik > Robotik
+171,Romatoloji,Fen > Tıp > Romatoloji
+172,Sağlık Bilimleri ve Hizmetleri,Fen > Tıp > Sağlık Bilimleri ve Hizmetleri
+173,Sağlık Politikaları ve Hizmetleri,Sosyal > Sosyal > Sağlık Politikaları ve Hizmetleri
+174,Sanat,Sosyal > Sosyal > Sanat
+175,Savunma Bilimleri,Fen > Mühendislik > Savunma Bilimleri
+176,Siyasi Bilimler,Sosyal > Sosyal > Siyasi Bilimler
+177,Solunum Sistemi,Fen > Tıp > Solunum Sistemi
+178,Sosyal Çalışma,Sosyal > Sosyal > Sosyal Çalışma
+179,Sosyoloji,Sosyal > Sosyal > Sosyoloji
+180,Spektroskopi,Fen > Temel Bilimler > Spektroskopi
+181,Spor Bilimleri,Fen > Tıp > Spor Bilimleri
+182,Su Kaynakları,Fen > Temel Bilimler > Su Kaynakları
+183,Tamamlayıcı ve Entegre Tıp,Fen > Tıp > Tamamlayıcı ve Entegre Tıp
+184,Tarımsal Ekonomi ve Politika,Fen > Ziraat > Tarımsal Ekonomi ve Politika
+185,Tarih,Sosyal > Sosyal > Tarih
+187,Taşınım Bilimi ve Teknolojisi,Fen > Mühendislik > Taşınım Bilimi ve Teknolojisi
+188,Telekomünikasyon,Fen > Mühendislik > Telekomünikasyon
+189,Temel Sağlık Hizmetleri,Fen > Tıp > Temel Sağlık Hizmetleri
+190,Termodinamik,Fen > Temel Bilimler > Termodinamik
+191,Tıbbi Araştırmalar Deneysel,Fen > Tıp > Tıbbi Araştırmalar Deneysel
+192,Tıbbi Etik,Fen > Tıp > Tıbbi Etik
+193,Tıbbi İnformatik,Fen > Tıp > Tıbbi İnformatik
+194,Tıbbi Laboratuar Teknolojisi,Fen > Tıp > Tıbbi Laboratuar Teknolojisi
+195,Tiyatro,Sosyal > Sosyal > Tiyatro
+196,Toksikoloji,Fen > Eczacılık > Toksikoloji
+197,Transplantasyon,Fen > Tıp > Transplantasyon
+198,Tropik Tıp,Fen > Tıp > Tropik Tıp
+199,Uluslararası İlişkiler,Sosyal > Sosyal > Uluslararası İlişkiler
+200,Üroloji ve Nefroloji,Fen > Tıp > Üroloji ve Nefroloji
+201,Veterinerlik,Fen > Veterinerlik > Veterinerlik
+202,Viroloji,Fen > Temel Bilimler > Viroloji
+203,"Yeşil, Sürdürülebilir Bilim ve Teknoloji","Fen > Mühendislik > Yeşil, Sürdürülebilir Bilim ve Teknoloji"
+204,"Yoğun Bakım, Tıp","Fen > Tıp > Yoğun Bakım, Tıp"
+205,Ziraat Mühendisliği,Fen > Ziraat > Ziraat Mühendisliği
+206,"Ziraat, Toprak Bilimi","Fen > Ziraat > Ziraat, Toprak Bilimi"
+207,Zooloji,Fen > Temel Bilimler > Zooloji

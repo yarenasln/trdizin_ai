@@ -21,7 +21,13 @@ MODELS = {
     "Qwen3": "Qwen/Qwen3-Embedding-0.6B",
 }
 
-BATCH_SIZE = 16
+# RTX 4050 Laptop GPU yaklaşık 6 GB VRAM olduğu için
+# her model için daha güvenli batch size kullanıyoruz.
+BATCH_SIZES = {
+    "E5": 8,
+    "BGE-M3": 4,
+    "Qwen3": 2,
+}
 
 # Embeddingleri burada saklayacağız.
 os.makedirs("embeddings", exist_ok=True)
@@ -73,6 +79,18 @@ else:
 
 print("Kullanılan cihaz:", device)
 
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+    print(
+        "Toplam VRAM:",
+        round(
+            torch.cuda.get_device_properties(0).total_memory
+            / (1024 ** 3),
+            2
+        ),
+        "GB"
+    )
+
 
 # --------------------------------------------------
 # 5. SONUÇLAR
@@ -91,224 +109,313 @@ for short_name, model_name in MODELS.items():
     print("=" * 70)
     print("MODEL:", short_name)
     print("Hugging Face:", model_name)
+    print("Batch size:", BATCH_SIZES[short_name])
     print("=" * 70)
 
-    # -------------------------------
-    # Modeli yükle
-    # -------------------------------
+    try:
 
-    load_start = time.perf_counter()
+        # --------------------------------------------------
+        # Modeli yükle
+        # --------------------------------------------------
 
-    model = SentenceTransformer(
-        model_name,
-        device=device
-    )
+        load_start = time.perf_counter()
 
-    load_time = time.perf_counter() - load_start
-
-    print(
-        f"Model yükleme süresi: "
-        f"{load_time:.2f} saniye"
-    )
-
-
-    # -------------------------------
-    # Embedding üret
-    # -------------------------------
-
-    texts = df["embedding_text"].tolist()
-
-    encode_start = time.perf_counter()
-
-    embeddings = model.encode(
-        texts,
-        batch_size=BATCH_SIZE,
-        show_progress_bar=True,
-
-        # Cosine similarity için faydalı.
-        normalize_embeddings=True,
-
-        # NumPy array olarak dönsün.
-        convert_to_numpy=True
-    )
-
-    encode_time = time.perf_counter() - encode_start
-
-
-    # -------------------------------
-    # Boyut bilgisi
-    # -------------------------------
-
-    embedding_dimension = embeddings.shape[1]
-
-    print(
-        "Embedding şekli:",
-        embeddings.shape
-    )
-
-    print(
-        f"Embedding üretme süresi: "
-        f"{encode_time:.2f} saniye"
-    )
-
-
-    # -------------------------------
-    # TUR - ENG BENZERLİĞİ
-    # -------------------------------
-
-    similarities = []
-
-    for article_id in paired_article_ids:
-
-        rows = df[df["article_id"] == article_id]
-
-        tur_rows = rows[
-            rows["language"] == "TUR"
-        ]
-
-        eng_rows = rows[
-            rows["language"] == "ENG"
-        ]
-
-        if tur_rows.empty or eng_rows.empty:
-            continue
-
-        tur_index = tur_rows.index[0]
-        eng_index = eng_rows.index[0]
-
-        tur_vector = embeddings[tur_index]
-        eng_vector = embeddings[eng_index]
-
-        # Vektörleri normalize ettiğimiz için
-        # dot product = cosine similarity.
-        similarity = np.dot(
-            tur_vector,
-            eng_vector
+        model = SentenceTransformer(
+            model_name,
+            device=device
         )
 
-        similarities.append(float(similarity))
+        load_time = time.perf_counter() - load_start
+
+        print(
+            f"Model yükleme süresi: "
+            f"{load_time:.2f} saniye"
+        )
 
 
-    if similarities:
+        # --------------------------------------------------
+        # Embedding üret
+        # --------------------------------------------------
 
-        average_similarity = np.mean(similarities)
-        median_similarity = np.median(similarities)
-        minimum_similarity = np.min(similarities)
-        maximum_similarity = np.max(similarities)
+        texts = df["embedding_text"].tolist()
 
-    else:
+        encode_start = time.perf_counter()
 
-        average_similarity = 0
-        median_similarity = 0
-        minimum_similarity = 0
-        maximum_similarity = 0
+        embeddings = model.encode(
+            texts,
+            batch_size=BATCH_SIZES[short_name],
+            show_progress_bar=True,
 
+            # Cosine similarity hesaplayacağımız için
+            # vektörleri normalize ediyoruz.
+            normalize_embeddings=True,
 
-    print("\nTUR ↔ ENG BENZERLİK")
+            # NumPy array olarak dönsün.
+            convert_to_numpy=True
+        )
 
-    print(
-        "Karşılaştırılan çift:",
-        len(similarities)
-    )
-
-    print(
-        f"Ortalama cosine similarity: "
-        f"{average_similarity:.4f}"
-    )
-
-    print(
-        f"Medyan cosine similarity: "
-        f"{median_similarity:.4f}"
-    )
-
-    print(
-        f"En düşük: "
-        f"{minimum_similarity:.4f}"
-    )
-
-    print(
-        f"En yüksek: "
-        f"{maximum_similarity:.4f}"
-    )
+        encode_time = time.perf_counter() - encode_start
 
 
-    # -------------------------------
-    # EMBEDDINGLERİ KAYDET
-    # -------------------------------
+        # --------------------------------------------------
+        # Boyut bilgisi
+        # --------------------------------------------------
 
-    embedding_file = (
-        f"embeddings/{short_name}_embeddings.npy"
-    )
+        embedding_dimension = embeddings.shape[1]
 
-    np.save(
-        embedding_file,
-        embeddings
-    )
+        print(
+            "\nEmbedding şekli:",
+            embeddings.shape
+        )
 
-    print(
-        "\nEmbedding dosyası:",
-        embedding_file
-    )
+        print(
+            f"Embedding üretme süresi: "
+            f"{encode_time:.2f} saniye"
+        )
 
 
-    # -------------------------------
-    # SONUÇ TABLOSUNA EKLE
-    # -------------------------------
+        # --------------------------------------------------
+        # TUR - ENG BENZERLİĞİ
+        # --------------------------------------------------
 
-    results.append({
-        "Model": short_name,
-        "Dimension": embedding_dimension,
-        "Load_Time_sec": round(load_time, 2),
-        "Encode_Time_sec": round(encode_time, 2),
-        "TR_EN_Pairs": len(similarities),
-        "TR_EN_Mean": round(
-            average_similarity,
-            4
-        ),
-        "TR_EN_Median": round(
-            median_similarity,
-            4
-        ),
-        "TR_EN_Min": round(
-            minimum_similarity,
-            4
-        ),
-        "TR_EN_Max": round(
-            maximum_similarity,
-            4
-        ),
-    })
+        similarities = []
+
+        for article_id in paired_article_ids:
+
+            rows = df[
+                df["article_id"] == article_id
+            ]
+
+            tur_rows = rows[
+                rows["language"] == "TUR"
+            ]
+
+            eng_rows = rows[
+                rows["language"] == "ENG"
+            ]
+
+            if tur_rows.empty or eng_rows.empty:
+                continue
+
+            tur_index = tur_rows.index[0]
+            eng_index = eng_rows.index[0]
+
+            tur_vector = embeddings[tur_index]
+            eng_vector = embeddings[eng_index]
+
+            # Embeddingleri normalize ettiğimiz için
+            # dot product doğrudan cosine similarity olur.
+            similarity = np.dot(
+                tur_vector,
+                eng_vector
+            )
+
+            similarities.append(
+                float(similarity)
+            )
 
 
-    # -------------------------------
+        if similarities:
+
+            average_similarity = np.mean(
+                similarities
+            )
+
+            median_similarity = np.median(
+                similarities
+            )
+
+            minimum_similarity = np.min(
+                similarities
+            )
+
+            maximum_similarity = np.max(
+                similarities
+            )
+
+        else:
+
+            average_similarity = 0
+            median_similarity = 0
+            minimum_similarity = 0
+            maximum_similarity = 0
+
+
+        print("\nTUR ↔ ENG BENZERLİK")
+
+        print(
+            "Karşılaştırılan çift:",
+            len(similarities)
+        )
+
+        print(
+            f"Ortalama cosine similarity: "
+            f"{average_similarity:.4f}"
+        )
+
+        print(
+            f"Medyan cosine similarity: "
+            f"{median_similarity:.4f}"
+        )
+
+        print(
+            f"En düşük: "
+            f"{minimum_similarity:.4f}"
+        )
+
+        print(
+            f"En yüksek: "
+            f"{maximum_similarity:.4f}"
+        )
+
+
+        # --------------------------------------------------
+        # EMBEDDINGLERİ KAYDET
+        # --------------------------------------------------
+
+        embedding_file = (
+            f"embeddings/{short_name}_embeddings.npy"
+        )
+
+        np.save(
+            embedding_file,
+            embeddings
+        )
+
+        print(
+            "\nEmbedding dosyası:",
+            embedding_file
+        )
+
+
+        # --------------------------------------------------
+        # SONUÇ TABLOSUNA EKLE
+        # --------------------------------------------------
+
+        results.append({
+            "Model": short_name,
+            "Dimension": embedding_dimension,
+            "Batch_Size": BATCH_SIZES[short_name],
+            "Load_Time_sec": round(
+                load_time,
+                2
+            ),
+            "Encode_Time_sec": round(
+                encode_time,
+                2
+            ),
+            "TR_EN_Pairs": len(
+                similarities
+            ),
+            "TR_EN_Mean": round(
+                average_similarity,
+                4
+            ),
+            "TR_EN_Median": round(
+                median_similarity,
+                4
+            ),
+            "TR_EN_Min": round(
+                minimum_similarity,
+                4
+            ),
+            "TR_EN_Max": round(
+                maximum_similarity,
+                4
+            ),
+        })
+
+
+    # --------------------------------------------------
+    # CUDA BELLEK HATASI
+    # --------------------------------------------------
+
+    except torch.cuda.OutOfMemoryError:
+
+        print(
+            "\nCUDA OUT OF MEMORY!"
+        )
+
+        print(
+            f"{short_name} modeli için "
+            f"batch size {BATCH_SIZES[short_name]} "
+            "fazla geldi."
+        )
+
+        print(
+            "Batch size küçültülmeli."
+        )
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+
+    # --------------------------------------------------
+    # DİĞER HATALAR
+    # --------------------------------------------------
+
+    except Exception as error:
+
+        print(
+            f"\n{short_name} modelinde hata oluştu:"
+        )
+
+        print(error)
+
+
+    # --------------------------------------------------
     # MODELİ RAM / GPU'DAN TEMİZLE
-    # -------------------------------
+    # --------------------------------------------------
 
-    del embeddings
-    del model
+    finally:
 
-    gc.collect()
+        if "embeddings" in locals():
+            del embeddings
 
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
+        if "model" in locals():
+            del model
+
+        gc.collect()
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+        print(
+            "\nGPU / RAM temizlendi."
+        )
 
 
 # --------------------------------------------------
 # 7. KARŞILAŞTIRMA TABLOSU
 # --------------------------------------------------
 
-results_df = pd.DataFrame(results)
+results_df = pd.DataFrame(
+    results
+)
 
 print("\n\n")
-print("=" * 90)
-print("GERÇEK TR DİZİN EMBEDDING MODEL KARŞILAŞTIRMASI")
-print("=" * 90)
+print("=" * 100)
 
 print(
-    results_df.to_string(
-        index=False
-    )
+    "GERÇEK TR DİZİN EMBEDDING MODEL "
+    "KARŞILAŞTIRMASI"
 )
+
+print("=" * 100)
+
+if not results_df.empty:
+
+    print(
+        results_df.to_string(
+            index=False
+        )
+    )
+
+else:
+
+    print(
+        "Başarıyla tamamlanan model bulunamadı."
+    )
 
 
 # --------------------------------------------------

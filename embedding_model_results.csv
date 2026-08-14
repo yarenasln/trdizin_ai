@@ -1,0 +1,4 @@
+﻿Model,Dimension,Batch_Size,Load_Time_sec,Encode_Time_sec,TR_EN_Pairs,TR_EN_Mean,TR_EN_Median,TR_EN_Min,TR_EN_Max
+E5,1024,8,13.41,42.94,990,0.9147,0.9146,0.8384,1.001
+BGE-M3,1024,4,12.28,156.19,990,0.8333,0.8389,0.59,1.0
+Qwen3,1024,2,14.4,151.3,990,0.7532,0.7629,0.4721,1.0033

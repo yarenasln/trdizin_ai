@@ -1,0 +1,203 @@
+﻿subject_id,subject_name,subject_fullname,main_field,sub_field,leaf_subject,depth,node_type,taxonomy_path,source
+1,Fen,Fen,Fen,,,1,MAIN_FIELD,Fen,ARTICLE_SUBJECT_DATA
+5,Tıp,Fen > Tıp,Fen,Tıp,,2,SUB_FIELD,Fen > Tıp,ARTICLE_SUBJECT_DATA
+6,Temel Bilimler,Fen > Temel Bilimler,Fen,Temel Bilimler,,2,SUB_FIELD,Fen > Temel Bilimler,ARTICLE_SUBJECT_DATA
+8,Veterinerlik,Fen > Veterinerlik,Fen,Veterinerlik,,2,SUB_FIELD,Fen > Veterinerlik,ARTICLE_SUBJECT_DATA
+9,Eczacılık,Fen > Eczacılık,Fen,Eczacılık,,2,SUB_FIELD,Fen > Eczacılık,ARTICLE_SUBJECT_DATA
+11,Acil Tıp,Fen > Tıp > Acil Tıp,Fen,Tıp,Acil Tıp,3,LEAF_SUBJECT,Fen > Tıp > Acil Tıp,ARTICLE_SUBJECT_DATA
+12,Adli Tıp,Fen > Tıp > Adli Tıp,Fen,Tıp,Adli Tıp,3,LEAF_SUBJECT,Fen > Tıp > Adli Tıp,ARTICLE_SUBJECT_DATA
+13,Aile Çalışmaları,Sosyal > Sosyal > Aile Çalışmaları,Sosyal,Sosyal,Aile Çalışmaları,3,LEAF_SUBJECT,Sosyal > Sosyal > Aile Çalışmaları,ARTICLE_SUBJECT_DATA
+14,Akustik,Fen > Temel Bilimler > Akustik,Fen,Temel Bilimler,Akustik,3,LEAF_SUBJECT,Fen > Temel Bilimler > Akustik,ARTICLE_SUBJECT_DATA
+15,Alerji,Fen > Tıp > Alerji,Fen,Tıp,Alerji,3,LEAF_SUBJECT,Fen > Tıp > Alerji,ARTICLE_SUBJECT_DATA
+16,Anatomi ve Morfoloji,Fen > Tıp > Anatomi ve Morfoloji,Fen,Tıp,Anatomi ve Morfoloji,3,LEAF_SUBJECT,Fen > Tıp > Anatomi ve Morfoloji,ARTICLE_SUBJECT_DATA
+17,Androloji,Fen > Tıp > Androloji,Fen,Tıp,Androloji,3,LEAF_SUBJECT,Fen > Tıp > Androloji,ARTICLE_SUBJECT_DATA
+18,Anestezi,Fen > Tıp > Anestezi,Fen,Tıp,Anestezi,3,LEAF_SUBJECT,Fen > Tıp > Anestezi,ARTICLE_SUBJECT_DATA
+19,Antropoloji,Sosyal > Sosyal > Antropoloji,Sosyal,Sosyal,Antropoloji,3,LEAF_SUBJECT,Sosyal > Sosyal > Antropoloji,ARTICLE_SUBJECT_DATA
+20,Arkeoloji,Sosyal > Sosyal > Arkeoloji,Sosyal,Sosyal,Arkeoloji,3,LEAF_SUBJECT,Sosyal > Sosyal > Arkeoloji,ARTICLE_SUBJECT_DATA
+21,Astronomi ve Astrofizik,Fen > Temel Bilimler > Astronomi ve Astrofizik,Fen,Temel Bilimler,Astronomi ve Astrofizik,3,LEAF_SUBJECT,Fen > Temel Bilimler > Astronomi ve Astrofizik,ARTICLE_SUBJECT_DATA
+22,Asya Çalışmaları,Sosyal > Sosyal > Asya Çalışmaları,Sosyal,Sosyal,Asya Çalışmaları,3,LEAF_SUBJECT,Sosyal > Sosyal > Asya Çalışmaları,ARTICLE_SUBJECT_DATA
+23,Bahçe Bitkileri,Fen > Ziraat > Bahçe Bitkileri,Fen,Ziraat,Bahçe Bitkileri,3,LEAF_SUBJECT,Fen > Ziraat > Bahçe Bitkileri,ARTICLE_SUBJECT_DATA
+24,Balıkçılık,Fen > Temel Bilimler > Balıkçılık,Fen,Temel Bilimler,Balıkçılık,3,LEAF_SUBJECT,Fen > Temel Bilimler > Balıkçılık,ARTICLE_SUBJECT_DATA
+25,Beslenme ve Diyetetik,Sosyal > Sosyal > Beslenme ve Diyetetik,Sosyal,Sosyal,Beslenme ve Diyetetik,3,LEAF_SUBJECT,Sosyal > Sosyal > Beslenme ve Diyetetik,ARTICLE_SUBJECT_DATA
+26,Beşeri Bilimler,Sosyal > Sosyal > Beşeri Bilimler,Sosyal,Sosyal,Beşeri Bilimler,3,LEAF_SUBJECT,Sosyal > Sosyal > Beşeri Bilimler,ARTICLE_SUBJECT_DATA
+27,"Bilgi, Belge Yönetimi","Sosyal > Sosyal > Bilgi, Belge Yönetimi",Sosyal,Sosyal,"Bilgi, Belge Yönetimi",3,LEAF_SUBJECT,"Sosyal > Sosyal > Bilgi, Belge Yönetimi",ARTICLE_SUBJECT_DATA
+28,"Bilgisayar Bilimleri, Bilgi Sistemleri","Fen > Mühendislik > Bilgisayar Bilimleri, Bilgi Sistemleri",Fen,Mühendislik,"Bilgisayar Bilimleri, Bilgi Sistemleri",3,LEAF_SUBJECT,"Fen > Mühendislik > Bilgisayar Bilimleri, Bilgi Sistemleri",ARTICLE_SUBJECT_DATA
+29,"Bilgisayar Bilimleri, Donanım ve Mimari","Fen > Mühendislik > Bilgisayar Bilimleri, Donanım ve Mimari",Fen,Mühendislik,"Bilgisayar Bilimleri, Donanım ve Mimari",3,LEAF_SUBJECT,"Fen > Mühendislik > Bilgisayar Bilimleri, Donanım ve Mimari",ARTICLE_SUBJECT_DATA
+30,"Bilgisayar Bilimleri, Sibernitik","Fen > Mühendislik > Bilgisayar Bilimleri, Sibernitik",Fen,Mühendislik,"Bilgisayar Bilimleri, Sibernitik",3,LEAF_SUBJECT,"Fen > Mühendislik > Bilgisayar Bilimleri, Sibernitik",ARTICLE_SUBJECT_DATA
+31,"Bilgisayar Bilimleri, Teori ve Metotlar","Fen > Mühendislik > Bilgisayar Bilimleri, Teori ve Metotlar",Fen,Mühendislik,"Bilgisayar Bilimleri, Teori ve Metotlar",3,LEAF_SUBJECT,"Fen > Mühendislik > Bilgisayar Bilimleri, Teori ve Metotlar",ARTICLE_SUBJECT_DATA
+32,"Bilgisayar Bilimleri, Yapay Zeka","Fen > Mühendislik > Bilgisayar Bilimleri, Yapay Zeka",Fen,Mühendislik,"Bilgisayar Bilimleri, Yapay Zeka",3,LEAF_SUBJECT,"Fen > Mühendislik > Bilgisayar Bilimleri, Yapay Zeka",ARTICLE_SUBJECT_DATA
+33,"Bilgisayar Bilimleri, Yazılım Mühendisliği","Fen > Mühendislik > Bilgisayar Bilimleri, Yazılım Mühendisliği",Fen,Mühendislik,"Bilgisayar Bilimleri, Yazılım Mühendisliği",3,LEAF_SUBJECT,"Fen > Mühendislik > Bilgisayar Bilimleri, Yazılım Mühendisliği",ARTICLE_SUBJECT_DATA
+34,Bilim Felsefesi ve Tarihi,Sosyal > Sosyal > Bilim Felsefesi ve Tarihi,Sosyal,Sosyal,Bilim Felsefesi ve Tarihi,3,LEAF_SUBJECT,Sosyal > Sosyal > Bilim Felsefesi ve Tarihi,ARTICLE_SUBJECT_DATA
+35,Bitki Bilimleri,Fen > Ziraat > Bitki Bilimleri,Fen,Ziraat,Bitki Bilimleri,3,LEAF_SUBJECT,Fen > Ziraat > Bitki Bilimleri,ARTICLE_SUBJECT_DATA
+36,Biyofizik,Fen > Tıp > Biyofizik,Fen,Tıp,Biyofizik,3,LEAF_SUBJECT,Fen > Tıp > Biyofizik,ARTICLE_SUBJECT_DATA
+37,Biyokimya ve Moleküler Biyoloji,Fen > Tıp > Biyokimya ve Moleküler Biyoloji,Fen,Tıp,Biyokimya ve Moleküler Biyoloji,3,LEAF_SUBJECT,Fen > Tıp > Biyokimya ve Moleküler Biyoloji,ARTICLE_SUBJECT_DATA
+38,Biyoloji,Fen > Temel Bilimler > Biyoloji,Fen,Temel Bilimler,Biyoloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Biyoloji,ARTICLE_SUBJECT_DATA
+39,Biyoloji Çeşitliliğinin Korunması,Fen > Temel Bilimler > Biyoloji Çeşitliliğinin Korunması,Fen,Temel Bilimler,Biyoloji Çeşitliliğinin Korunması,3,LEAF_SUBJECT,Fen > Temel Bilimler > Biyoloji Çeşitliliğinin Korunması,ARTICLE_SUBJECT_DATA
+40,Biyoteknoloji ve Uygulamalı Mikrobiyoloji,Fen > Tıp > Biyoteknoloji ve Uygulamalı Mikrobiyoloji,Fen,Tıp,Biyoteknoloji ve Uygulamalı Mikrobiyoloji,3,LEAF_SUBJECT,Fen > Tıp > Biyoteknoloji ve Uygulamalı Mikrobiyoloji,ARTICLE_SUBJECT_DATA
+41,Cerrahi,Fen > Tıp > Cerrahi,Fen,Tıp,Cerrahi,3,LEAF_SUBJECT,Fen > Tıp > Cerrahi,ARTICLE_SUBJECT_DATA
+42,Coğrafya,Sosyal > Sosyal > Coğrafya,Sosyal,Sosyal,Coğrafya,3,LEAF_SUBJECT,Sosyal > Sosyal > Coğrafya,ARTICLE_SUBJECT_DATA
+43,Çevre Bilimleri,Fen > Temel Bilimler > Çevre Bilimleri,Fen,Temel Bilimler,Çevre Bilimleri,3,LEAF_SUBJECT,Fen > Temel Bilimler > Çevre Bilimleri,ARTICLE_SUBJECT_DATA
+44,Çevre Çalışmaları,Sosyal > Sosyal > Çevre Çalışmaları,Sosyal,Sosyal,Çevre Çalışmaları,3,LEAF_SUBJECT,Sosyal > Sosyal > Çevre Çalışmaları,ARTICLE_SUBJECT_DATA
+45,Çevre Mühendisliği,Fen > Mühendislik > Çevre Mühendisliği,Fen,Mühendislik,Çevre Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > Çevre Mühendisliği,ARTICLE_SUBJECT_DATA
+46,Davranış Bilimleri,Sosyal > Sosyal > Davranış Bilimleri,Sosyal,Sosyal,Davranış Bilimleri,3,LEAF_SUBJECT,Sosyal > Sosyal > Davranış Bilimleri,ARTICLE_SUBJECT_DATA
+47,Denizcilik,Fen > Mühendislik > Denizcilik,Fen,Mühendislik,Denizcilik,3,LEAF_SUBJECT,Fen > Mühendislik > Denizcilik,ARTICLE_SUBJECT_DATA
+48,Deniz ve Tatlı Su Biyolojisi,Fen > Temel Bilimler > Deniz ve Tatlı Su Biyolojisi,Fen,Temel Bilimler,Deniz ve Tatlı Su Biyolojisi,3,LEAF_SUBJECT,Fen > Temel Bilimler > Deniz ve Tatlı Su Biyolojisi,ARTICLE_SUBJECT_DATA
+49,Dermatoloji,Fen > Tıp > Dermatoloji,Fen,Tıp,Dermatoloji,3,LEAF_SUBJECT,Fen > Tıp > Dermatoloji,ARTICLE_SUBJECT_DATA
+50,Dil ve Dil Bilim,Sosyal > Sosyal > Dil ve Dil Bilim,Sosyal,Sosyal,Dil ve Dil Bilim,3,LEAF_SUBJECT,Sosyal > Sosyal > Dil ve Dil Bilim,ARTICLE_SUBJECT_DATA
+51,Din Bilimi,Sosyal > Sosyal > Din Bilimi,Sosyal,Sosyal,Din Bilimi,3,LEAF_SUBJECT,Sosyal > Sosyal > Din Bilimi,ARTICLE_SUBJECT_DATA
+52,Diş Hekimliği,Fen > Diş Hekimliği > Diş Hekimliği,Fen,Diş Hekimliği,Diş Hekimliği,3,LEAF_SUBJECT,Fen > Diş Hekimliği > Diş Hekimliği,ARTICLE_SUBJECT_DATA
+53,Edebi Teori ve Eleştiri,Sosyal > Sosyal > Edebi Teori ve Eleştiri,Sosyal,Sosyal,Edebi Teori ve Eleştiri,3,LEAF_SUBJECT,Sosyal > Sosyal > Edebi Teori ve Eleştiri,ARTICLE_SUBJECT_DATA
+54,Edebiyat,Sosyal > Sosyal > Edebiyat,Sosyal,Sosyal,Edebiyat,3,LEAF_SUBJECT,Sosyal > Sosyal > Edebiyat,ARTICLE_SUBJECT_DATA
+55,"Eğitim, Eğitim Araştırmaları","Sosyal > Sosyal > Eğitim, Eğitim Araştırmaları",Sosyal,Sosyal,"Eğitim, Eğitim Araştırmaları",3,LEAF_SUBJECT,"Sosyal > Sosyal > Eğitim, Eğitim Araştırmaları",ARTICLE_SUBJECT_DATA
+56,"Eğitim, Özel","Sosyal > Sosyal > Eğitim, Özel",Sosyal,Sosyal,"Eğitim, Özel",3,LEAF_SUBJECT,"Sosyal > Sosyal > Eğitim, Özel",ARTICLE_SUBJECT_DATA
+57,Ekoloji,Fen > Temel Bilimler > Ekoloji,Fen,Temel Bilimler,Ekoloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Ekoloji,ARTICLE_SUBJECT_DATA
+58,Endokrinoloji ve Metabolizma,Fen > Tıp > Endokrinoloji ve Metabolizma,Fen,Tıp,Endokrinoloji ve Metabolizma,3,LEAF_SUBJECT,Fen > Tıp > Endokrinoloji ve Metabolizma,ARTICLE_SUBJECT_DATA
+59,Endüstri Mühendisliği,Fen > Mühendislik > Endüstri Mühendisliği,Fen,Mühendislik,Endüstri Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > Endüstri Mühendisliği,ARTICLE_SUBJECT_DATA
+60,Enerji ve Yakıtlar,Fen > Mühendislik > Enerji ve Yakıtlar,Fen,Mühendislik,Enerji ve Yakıtlar,3,LEAF_SUBJECT,Fen > Mühendislik > Enerji ve Yakıtlar,ARTICLE_SUBJECT_DATA
+61,Enfeksiyon Hastalıkları,Fen > Tıp > Enfeksiyon Hastalıkları,Fen,Tıp,Enfeksiyon Hastalıkları,3,LEAF_SUBJECT,Fen > Tıp > Enfeksiyon Hastalıkları,ARTICLE_SUBJECT_DATA
+62,Entomoloji,Fen > Temel Bilimler > Entomoloji,Fen,Temel Bilimler,Entomoloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Entomoloji,ARTICLE_SUBJECT_DATA
+64,Etik,Sosyal > Sosyal > Etik,Sosyal,Sosyal,Etik,3,LEAF_SUBJECT,Sosyal > Sosyal > Etik,ARTICLE_SUBJECT_DATA
+65,Etnik Çalışmalar,Sosyal > Sosyal > Etnik Çalışmalar,Sosyal,Sosyal,Etnik Çalışmalar,3,LEAF_SUBJECT,Sosyal > Sosyal > Etnik Çalışmalar,ARTICLE_SUBJECT_DATA
+66,Farmakoloji ve Eczacılık,Fen > Eczacılık > Farmakoloji ve Eczacılık,Fen,Eczacılık,Farmakoloji ve Eczacılık,3,LEAF_SUBJECT,Fen > Eczacılık > Farmakoloji ve Eczacılık,ARTICLE_SUBJECT_DATA
+67,Felsefe,Sosyal > Sosyal > Felsefe,Sosyal,Sosyal,Felsefe,3,LEAF_SUBJECT,Sosyal > Sosyal > Felsefe,ARTICLE_SUBJECT_DATA
+68,"Film, Radyo, Televizyon","Sosyal > Sosyal > Film, Radyo, Televizyon",Sosyal,Sosyal,"Film, Radyo, Televizyon",3,LEAF_SUBJECT,"Sosyal > Sosyal > Film, Radyo, Televizyon",ARTICLE_SUBJECT_DATA
+69,"Fizik, Akışkanlar ve Plazma","Fen > Temel Bilimler > Fizik, Akışkanlar ve Plazma",Fen,Temel Bilimler,"Fizik, Akışkanlar ve Plazma",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Akışkanlar ve Plazma",ARTICLE_SUBJECT_DATA
+70,"Fizik, Atomik ve Moleküler Kimya","Fen > Temel Bilimler > Fizik, Atomik ve Moleküler Kimya",Fen,Temel Bilimler,"Fizik, Atomik ve Moleküler Kimya",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Atomik ve Moleküler Kimya",ARTICLE_SUBJECT_DATA
+71,"Fizik, Katı Hal","Fen > Temel Bilimler > Fizik, Katı Hal",Fen,Temel Bilimler,"Fizik, Katı Hal",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Katı Hal",ARTICLE_SUBJECT_DATA
+72,"Fizik, Matematik","Fen > Temel Bilimler > Fizik, Matematik",Fen,Temel Bilimler,"Fizik, Matematik",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Matematik",ARTICLE_SUBJECT_DATA
+73,"Fizik, Nükleer","Fen > Temel Bilimler > Fizik, Nükleer",Fen,Temel Bilimler,"Fizik, Nükleer",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Nükleer",ARTICLE_SUBJECT_DATA
+74,Fizikokimya,Fen > Temel Bilimler > Fizikokimya,Fen,Temel Bilimler,Fizikokimya,3,LEAF_SUBJECT,Fen > Temel Bilimler > Fizikokimya,ARTICLE_SUBJECT_DATA
+75,"Fizik, Partiküller ve Alanlar","Fen > Temel Bilimler > Fizik, Partiküller ve Alanlar",Fen,Temel Bilimler,"Fizik, Partiküller ve Alanlar",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Partiküller ve Alanlar",ARTICLE_SUBJECT_DATA
+76,"Fizik, Uygulamalı","Fen > Temel Bilimler > Fizik, Uygulamalı",Fen,Temel Bilimler,"Fizik, Uygulamalı",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Fizik, Uygulamalı",ARTICLE_SUBJECT_DATA
+77,Fizyoloji,Fen > Tıp > Fizyoloji,Fen,Tıp,Fizyoloji,3,LEAF_SUBJECT,Fen > Tıp > Fizyoloji,ARTICLE_SUBJECT_DATA
+78,Folklor,Sosyal > Sosyal > Folklor,Sosyal,Sosyal,Folklor,3,LEAF_SUBJECT,Sosyal > Sosyal > Folklor,ARTICLE_SUBJECT_DATA
+79,Gastroenteroloji ve Hepatoloji,Fen > Tıp > Gastroenteroloji ve Hepatoloji,Fen,Tıp,Gastroenteroloji ve Hepatoloji,3,LEAF_SUBJECT,Fen > Tıp > Gastroenteroloji ve Hepatoloji,ARTICLE_SUBJECT_DATA
+80,Genel ve Dahili Tıp,Fen > Tıp > Genel ve Dahili Tıp,Fen,Tıp,Genel ve Dahili Tıp,3,LEAF_SUBJECT,Fen > Tıp > Genel ve Dahili Tıp,ARTICLE_SUBJECT_DATA
+81,Genetik ve Kalıtım,Fen > Temel Bilimler > Genetik ve Kalıtım,Fen,Temel Bilimler,Genetik ve Kalıtım,3,LEAF_SUBJECT,Fen > Temel Bilimler > Genetik ve Kalıtım,ARTICLE_SUBJECT_DATA
+82,Geriatri ve Gerontoloji,Fen > Tıp > Geriatri ve Gerontoloji,Fen,Tıp,Geriatri ve Gerontoloji,3,LEAF_SUBJECT,Fen > Tıp > Geriatri ve Gerontoloji,ARTICLE_SUBJECT_DATA
+83,Gıda Bilimi ve Teknolojisi,Fen > Mühendislik > Gıda Bilimi ve Teknolojisi,Fen,Mühendislik,Gıda Bilimi ve Teknolojisi,3,LEAF_SUBJECT,Fen > Mühendislik > Gıda Bilimi ve Teknolojisi,ARTICLE_SUBJECT_DATA
+84,Görüntüleme Bilimi ve Fotoğraf Teknolojisi,Fen > Mühendislik > Görüntüleme Bilimi ve Fotoğraf Teknolojisi,Fen,Mühendislik,Görüntüleme Bilimi ve Fotoğraf Teknolojisi,3,LEAF_SUBJECT,Fen > Mühendislik > Görüntüleme Bilimi ve Fotoğraf Teknolojisi,ARTICLE_SUBJECT_DATA
+85,Göz Hastalıkları,Fen > Tıp > Göz Hastalıkları,Fen,Tıp,Göz Hastalıkları,3,LEAF_SUBJECT,Fen > Tıp > Göz Hastalıkları,ARTICLE_SUBJECT_DATA
+86,Halkla İlişkiler,Sosyal > Sosyal > Halkla İlişkiler,Sosyal,Sosyal,Halkla İlişkiler,3,LEAF_SUBJECT,Sosyal > Sosyal > Halkla İlişkiler,ARTICLE_SUBJECT_DATA
+87,Halk ve Çevre Sağlığı,Fen > Tıp > Halk ve Çevre Sağlığı,Fen,Tıp,Halk ve Çevre Sağlığı,3,LEAF_SUBJECT,Fen > Tıp > Halk ve Çevre Sağlığı,ARTICLE_SUBJECT_DATA
+88,Hematoloji,Fen > Tıp > Hematoloji,Fen,Tıp,Hematoloji,3,LEAF_SUBJECT,Fen > Tıp > Hematoloji,ARTICLE_SUBJECT_DATA
+89,Hemşirelik,Sosyal > Sosyal > Hemşirelik,Sosyal,Sosyal,Hemşirelik,3,LEAF_SUBJECT,Sosyal > Sosyal > Hemşirelik,ARTICLE_SUBJECT_DATA
+90,Hukuk,Sosyal > Sosyal > Hukuk,Sosyal,Sosyal,Hukuk,3,LEAF_SUBJECT,Sosyal > Sosyal > Hukuk,ARTICLE_SUBJECT_DATA
+91,Hücre Biyolojisi,Fen > Tıp > Hücre Biyolojisi,Fen,Tıp,Hücre Biyolojisi,3,LEAF_SUBJECT,Fen > Tıp > Hücre Biyolojisi,ARTICLE_SUBJECT_DATA
+92,Hücre ve Doku Mühendisliği,Fen > Mühendislik > Hücre ve Doku Mühendisliği,Fen,Mühendislik,Hücre ve Doku Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > Hücre ve Doku Mühendisliği,ARTICLE_SUBJECT_DATA
+93,İktisat,Sosyal > Sosyal > İktisat,Sosyal,Sosyal,İktisat,3,LEAF_SUBJECT,Sosyal > Sosyal > İktisat,ARTICLE_SUBJECT_DATA
+94,İletişim,Sosyal > Sosyal > İletişim,Sosyal,Sosyal,İletişim,3,LEAF_SUBJECT,Sosyal > Sosyal > İletişim,ARTICLE_SUBJECT_DATA
+95,İmalat Mühendisliği,Fen > Mühendislik > İmalat Mühendisliği,Fen,Mühendislik,İmalat Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > İmalat Mühendisliği,ARTICLE_SUBJECT_DATA
+96,İmmünoloji,Fen > Tıp > İmmünoloji,Fen,Tıp,İmmünoloji,3,LEAF_SUBJECT,Fen > Tıp > İmmünoloji,ARTICLE_SUBJECT_DATA
+97,İnşaat Mühendisliği,Fen > Mühendislik > İnşaat Mühendisliği,Fen,Mühendislik,İnşaat Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > İnşaat Mühendisliği,ARTICLE_SUBJECT_DATA
+98,İnşaat ve Yapı Teknolojisi,Fen > Mühendislik > İnşaat ve Yapı Teknolojisi,Fen,Mühendislik,İnşaat ve Yapı Teknolojisi,3,LEAF_SUBJECT,Fen > Mühendislik > İnşaat ve Yapı Teknolojisi,ARTICLE_SUBJECT_DATA
+99,İstatistik ve Olasılık,Fen > Temel Bilimler > İstatistik ve Olasılık,Fen,Temel Bilimler,İstatistik ve Olasılık,3,LEAF_SUBJECT,Fen > Temel Bilimler > İstatistik ve Olasılık,ARTICLE_SUBJECT_DATA
+100,İş,Sosyal > Sosyal > İş,Sosyal,Sosyal,İş,3,LEAF_SUBJECT,Sosyal > Sosyal > İş,ARTICLE_SUBJECT_DATA
+101,İşletme,Sosyal > Sosyal > İşletme,Sosyal,Sosyal,İşletme,3,LEAF_SUBJECT,Sosyal > Sosyal > İşletme,ARTICLE_SUBJECT_DATA
+102,İşletme Finans,Sosyal > Sosyal > İşletme Finans,Sosyal,Sosyal,İşletme Finans,3,LEAF_SUBJECT,Sosyal > Sosyal > İşletme Finans,ARTICLE_SUBJECT_DATA
+103,Jeokimya ve Jeofizik,Fen > Mühendislik > Jeokimya ve Jeofizik,Fen,Mühendislik,Jeokimya ve Jeofizik,3,LEAF_SUBJECT,Fen > Mühendislik > Jeokimya ve Jeofizik,ARTICLE_SUBJECT_DATA
+104,Jeoloji,Fen > Mühendislik > Jeoloji,Fen,Mühendislik,Jeoloji,3,LEAF_SUBJECT,Fen > Mühendislik > Jeoloji,ARTICLE_SUBJECT_DATA
+105,Kadın Araştırmaları,Sosyal > Sosyal > Kadın Araştırmaları,Sosyal,Sosyal,Kadın Araştırmaları,3,LEAF_SUBJECT,Sosyal > Sosyal > Kadın Araştırmaları,ARTICLE_SUBJECT_DATA
+106,Kadın Hastalıkları ve Doğum,Fen > Tıp > Kadın Hastalıkları ve Doğum,Fen,Tıp,Kadın Hastalıkları ve Doğum,3,LEAF_SUBJECT,Fen > Tıp > Kadın Hastalıkları ve Doğum,ARTICLE_SUBJECT_DATA
+107,Kalp ve Kalp Damar Sistemi,Fen > Tıp > Kalp ve Kalp Damar Sistemi,Fen,Tıp,Kalp ve Kalp Damar Sistemi,3,LEAF_SUBJECT,Fen > Tıp > Kalp ve Kalp Damar Sistemi,ARTICLE_SUBJECT_DATA
+108,Kamu Yönetimi,Sosyal > Sosyal > Kamu Yönetimi,Sosyal,Sosyal,Kamu Yönetimi,3,LEAF_SUBJECT,Sosyal > Sosyal > Kamu Yönetimi,ARTICLE_SUBJECT_DATA
+109,Kentsel Çalışmalar,Sosyal > Sosyal > Kentsel Çalışmalar,Sosyal,Sosyal,Kentsel Çalışmalar,3,LEAF_SUBJECT,Sosyal > Sosyal > Kentsel Çalışmalar,ARTICLE_SUBJECT_DATA
+110,"Kimya, Analitik","Fen > Temel Bilimler > Kimya, Analitik",Fen,Temel Bilimler,"Kimya, Analitik",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Kimya, Analitik",ARTICLE_SUBJECT_DATA
+111,"Kimya, İnorganik ve Nükleer","Fen > Temel Bilimler > Kimya, İnorganik ve Nükleer",Fen,Temel Bilimler,"Kimya, İnorganik ve Nükleer",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Kimya, İnorganik ve Nükleer",ARTICLE_SUBJECT_DATA
+112,"Kimya, Organik","Fen > Temel Bilimler > Kimya, Organik",Fen,Temel Bilimler,"Kimya, Organik",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Kimya, Organik",ARTICLE_SUBJECT_DATA
+113,"Kimya, Tıbbi","Fen > Temel Bilimler > Kimya, Tıbbi",Fen,Temel Bilimler,"Kimya, Tıbbi",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Kimya, Tıbbi",ARTICLE_SUBJECT_DATA
+114,"Kimya, Uygulamalı","Fen > Temel Bilimler > Kimya, Uygulamalı",Fen,Temel Bilimler,"Kimya, Uygulamalı",3,LEAF_SUBJECT,"Fen > Temel Bilimler > Kimya, Uygulamalı",ARTICLE_SUBJECT_DATA
+115,Klinik Nöroloji,Fen > Tıp > Klinik Nöroloji,Fen,Tıp,Klinik Nöroloji,3,LEAF_SUBJECT,Fen > Tıp > Klinik Nöroloji,ARTICLE_SUBJECT_DATA
+116,Kriminoloji ve Ceza Bilimi,Sosyal > Sosyal > Kriminoloji ve Ceza Bilimi,Sosyal,Sosyal,Kriminoloji ve Ceza Bilimi,3,LEAF_SUBJECT,Sosyal > Sosyal > Kriminoloji ve Ceza Bilimi,ARTICLE_SUBJECT_DATA
+117,"Kulak, Burun, Boğaz","Fen > Tıp > Kulak, Burun, Boğaz",Fen,Tıp,"Kulak, Burun, Boğaz",3,LEAF_SUBJECT,"Fen > Tıp > Kulak, Burun, Boğaz",ARTICLE_SUBJECT_DATA
+118,Kuş Bilimi,Fen > Temel Bilimler > Kuş Bilimi,Fen,Temel Bilimler,Kuş Bilimi,3,LEAF_SUBJECT,Fen > Temel Bilimler > Kuş Bilimi,ARTICLE_SUBJECT_DATA
+119,Kültürel Çalışmalar,Sosyal > Sosyal > Kültürel Çalışmalar,Sosyal,Sosyal,Kültürel Çalışmalar,3,LEAF_SUBJECT,Sosyal > Sosyal > Kültürel Çalışmalar,ARTICLE_SUBJECT_DATA
+120,Limnoloji,Fen > Temel Bilimler > Limnoloji,Fen,Temel Bilimler,Limnoloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Limnoloji,ARTICLE_SUBJECT_DATA
+121,Madde Bağımlılığı,Sosyal > Sosyal > Madde Bağımlılığı,Sosyal,Sosyal,Madde Bağımlılığı,3,LEAF_SUBJECT,Sosyal > Sosyal > Madde Bağımlılığı,ARTICLE_SUBJECT_DATA
+122,Maden İşletme ve Cevher Hazırlama,Fen > Mühendislik > Maden İşletme ve Cevher Hazırlama,Fen,Mühendislik,Maden İşletme ve Cevher Hazırlama,3,LEAF_SUBJECT,Fen > Mühendislik > Maden İşletme ve Cevher Hazırlama,ARTICLE_SUBJECT_DATA
+123,"Malzeme Bilimleri, Biyomalzemeler","Fen > Mühendislik > Malzeme Bilimleri, Biyomalzemeler",Fen,Mühendislik,"Malzeme Bilimleri, Biyomalzemeler",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Biyomalzemeler",ARTICLE_SUBJECT_DATA
+124,"Malzeme Bilimleri, Kâğıt ve Ahşap","Fen > Mühendislik > Malzeme Bilimleri, Kâğıt ve Ahşap",Fen,Mühendislik,"Malzeme Bilimleri, Kâğıt ve Ahşap",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Kâğıt ve Ahşap",ARTICLE_SUBJECT_DATA
+125,"Malzeme Bilimleri, Kaplamalar ve Filmler","Fen > Mühendislik > Malzeme Bilimleri, Kaplamalar ve Filmler",Fen,Mühendislik,"Malzeme Bilimleri, Kaplamalar ve Filmler",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Kaplamalar ve Filmler",ARTICLE_SUBJECT_DATA
+126,"Malzeme Bilimleri, Kompozitler","Fen > Mühendislik > Malzeme Bilimleri, Kompozitler",Fen,Mühendislik,"Malzeme Bilimleri, Kompozitler",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Kompozitler",ARTICLE_SUBJECT_DATA
+127,"Malzeme Bilimleri, Özellik ve Test","Fen > Mühendislik > Malzeme Bilimleri, Özellik ve Test",Fen,Mühendislik,"Malzeme Bilimleri, Özellik ve Test",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Özellik ve Test",ARTICLE_SUBJECT_DATA
+128,"Malzeme Bilimleri, Seramik","Fen > Mühendislik > Malzeme Bilimleri, Seramik",Fen,Mühendislik,"Malzeme Bilimleri, Seramik",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Seramik",ARTICLE_SUBJECT_DATA
+129,"Malzeme Bilimleri, Tekstil","Fen > Mühendislik > Malzeme Bilimleri, Tekstil",Fen,Mühendislik,"Malzeme Bilimleri, Tekstil",3,LEAF_SUBJECT,"Fen > Mühendislik > Malzeme Bilimleri, Tekstil",ARTICLE_SUBJECT_DATA
+130,Mantar Bilimi,Fen > Temel Bilimler > Mantar Bilimi,Fen,Temel Bilimler,Mantar Bilimi,3,LEAF_SUBJECT,Fen > Temel Bilimler > Mantar Bilimi,ARTICLE_SUBJECT_DATA
+131,Mantık,Sosyal > Sosyal > Mantık,Sosyal,Sosyal,Mantık,3,LEAF_SUBJECT,Sosyal > Sosyal > Mantık,ARTICLE_SUBJECT_DATA
+132,Matematik,Fen > Temel Bilimler > Matematik,Fen,Temel Bilimler,Matematik,3,LEAF_SUBJECT,Fen > Temel Bilimler > Matematik,ARTICLE_SUBJECT_DATA
+133,Metalürji Mühendisliği,Fen > Mühendislik > Metalürji Mühendisliği,Fen,Mühendislik,Metalürji Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > Metalürji Mühendisliği,ARTICLE_SUBJECT_DATA
+134,Meteoroloji ve Atmosferik Bilimler,Fen > Mühendislik > Meteoroloji ve Atmosferik Bilimler,Fen,Mühendislik,Meteoroloji ve Atmosferik Bilimler,3,LEAF_SUBJECT,Fen > Mühendislik > Meteoroloji ve Atmosferik Bilimler,ARTICLE_SUBJECT_DATA
+135,Mikrobiyoloji,Fen > Tıp > Mikrobiyoloji,Fen,Tıp,Mikrobiyoloji,3,LEAF_SUBJECT,Fen > Tıp > Mikrobiyoloji,ARTICLE_SUBJECT_DATA
+136,Mikroskopi,Fen > Temel Bilimler > Mikroskopi,Fen,Temel Bilimler,Mikroskopi,3,LEAF_SUBJECT,Fen > Temel Bilimler > Mikroskopi,ARTICLE_SUBJECT_DATA
+137,Mimarlık,Fen > Mühendislik > Mimarlık,Fen,Mühendislik,Mimarlık,3,LEAF_SUBJECT,Fen > Mühendislik > Mimarlık,ARTICLE_SUBJECT_DATA
+138,Mineraloji,Fen > Temel Bilimler > Mineraloji,Fen,Temel Bilimler,Mineraloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Mineraloji,ARTICLE_SUBJECT_DATA
+139,"Mühendislik, Biyotıp","Fen > Mühendislik > Mühendislik, Biyotıp",Fen,Mühendislik,"Mühendislik, Biyotıp",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Biyotıp",ARTICLE_SUBJECT_DATA
+140,"Mühendislik, Deniz","Fen > Mühendislik > Mühendislik, Deniz",Fen,Mühendislik,"Mühendislik, Deniz",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Deniz",ARTICLE_SUBJECT_DATA
+141,"Mühendislik, Elektrik ve Elektronik","Fen > Mühendislik > Mühendislik, Elektrik ve Elektronik",Fen,Mühendislik,"Mühendislik, Elektrik ve Elektronik",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Elektrik ve Elektronik",ARTICLE_SUBJECT_DATA
+142,"Mühendislik, Hava ve Uzay","Fen > Mühendislik > Mühendislik, Hava ve Uzay",Fen,Mühendislik,"Mühendislik, Hava ve Uzay",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Hava ve Uzay",ARTICLE_SUBJECT_DATA
+143,"Mühendislik, Jeoloji","Fen > Mühendislik > Mühendislik, Jeoloji",Fen,Mühendislik,"Mühendislik, Jeoloji",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Jeoloji",ARTICLE_SUBJECT_DATA
+144,"Mühendislik, Kimya","Fen > Mühendislik > Mühendislik, Kimya",Fen,Mühendislik,"Mühendislik, Kimya",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Kimya",ARTICLE_SUBJECT_DATA
+145,"Mühendislik, Makine","Fen > Mühendislik > Mühendislik, Makine",Fen,Mühendislik,"Mühendislik, Makine",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Makine",ARTICLE_SUBJECT_DATA
+146,"Mühendislik, Petrol","Fen > Mühendislik > Mühendislik, Petrol",Fen,Mühendislik,"Mühendislik, Petrol",3,LEAF_SUBJECT,"Fen > Mühendislik > Mühendislik, Petrol",ARTICLE_SUBJECT_DATA
+147,Müzik,Sosyal > Sosyal > Müzik,Sosyal,Sosyal,Müzik,3,LEAF_SUBJECT,Sosyal > Sosyal > Müzik,ARTICLE_SUBJECT_DATA
+148,Nanobilim ve Nanoteknoloji,Fen > Mühendislik > Nanobilim ve Nanoteknoloji,Fen,Mühendislik,Nanobilim ve Nanoteknoloji,3,LEAF_SUBJECT,Fen > Mühendislik > Nanobilim ve Nanoteknoloji,ARTICLE_SUBJECT_DATA
+149,Nörolojik Bilimler,Fen > Tıp > Nörolojik Bilimler,Fen,Tıp,Nörolojik Bilimler,3,LEAF_SUBJECT,Fen > Tıp > Nörolojik Bilimler,ARTICLE_SUBJECT_DATA
+150,Nüfus İstatistikleri Bilimi,Sosyal > Sosyal > Nüfus İstatistikleri Bilimi,Sosyal,Sosyal,Nüfus İstatistikleri Bilimi,3,LEAF_SUBJECT,Sosyal > Sosyal > Nüfus İstatistikleri Bilimi,ARTICLE_SUBJECT_DATA
+151,Nükleer Bilim ve Teknolojisi,Fen > Mühendislik > Nükleer Bilim ve Teknolojisi,Fen,Mühendislik,Nükleer Bilim ve Teknolojisi,3,LEAF_SUBJECT,Fen > Mühendislik > Nükleer Bilim ve Teknolojisi,ARTICLE_SUBJECT_DATA
+152,Odyoloji ve Konuşma-Dil Patolojisi,Fen > Tıp > Odyoloji ve Konuşma-Dil Patolojisi,Fen,Tıp,Odyoloji ve Konuşma-Dil Patolojisi,3,LEAF_SUBJECT,Fen > Tıp > Odyoloji ve Konuşma-Dil Patolojisi,ARTICLE_SUBJECT_DATA
+153,Onkoloji,Fen > Tıp > Onkoloji,Fen,Tıp,Onkoloji,3,LEAF_SUBJECT,Fen > Tıp > Onkoloji,ARTICLE_SUBJECT_DATA
+154,Optik,Fen > Temel Bilimler > Optik,Fen,Temel Bilimler,Optik,3,LEAF_SUBJECT,Fen > Temel Bilimler > Optik,ARTICLE_SUBJECT_DATA
+155,Orman Mühendisliği,Fen > Mühendislik > Orman Mühendisliği,Fen,Mühendislik,Orman Mühendisliği,3,LEAF_SUBJECT,Fen > Mühendislik > Orman Mühendisliği,ARTICLE_SUBJECT_DATA
+156,Ortaçağ ve Rönesans Çalışmaları,Sosyal > Sosyal > Ortaçağ ve Rönesans Çalışmaları,Sosyal,Sosyal,Ortaçağ ve Rönesans Çalışmaları,3,LEAF_SUBJECT,Sosyal > Sosyal > Ortaçağ ve Rönesans Çalışmaları,ARTICLE_SUBJECT_DATA
+157,Ortopedi,Fen > Tıp > Ortopedi,Fen,Tıp,Ortopedi,3,LEAF_SUBJECT,Fen > Tıp > Ortopedi,ARTICLE_SUBJECT_DATA
+158,Oşinografi,Fen > Temel Bilimler > Oşinografi,Fen,Temel Bilimler,Oşinografi,3,LEAF_SUBJECT,Fen > Temel Bilimler > Oşinografi,ARTICLE_SUBJECT_DATA
+159,"Otelcilik, Konaklama, Spor ve Turizm","Sosyal > Sosyal > Otelcilik, Konaklama, Spor ve Turizm",Sosyal,Sosyal,"Otelcilik, Konaklama, Spor ve Turizm",3,LEAF_SUBJECT,"Sosyal > Sosyal > Otelcilik, Konaklama, Spor ve Turizm",ARTICLE_SUBJECT_DATA
+160,Paleontoloji,Fen > Temel Bilimler > Paleontoloji,Fen,Temel Bilimler,Paleontoloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Paleontoloji,ARTICLE_SUBJECT_DATA
+161,Parazitoloji,Fen > Temel Bilimler > Parazitoloji,Fen,Temel Bilimler,Parazitoloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Parazitoloji,ARTICLE_SUBJECT_DATA
+162,Patoloji,Fen > Tıp > Patoloji,Fen,Tıp,Patoloji,3,LEAF_SUBJECT,Fen > Tıp > Patoloji,ARTICLE_SUBJECT_DATA
+163,Pediatri,Fen > Tıp > Pediatri,Fen,Tıp,Pediatri,3,LEAF_SUBJECT,Fen > Tıp > Pediatri,ARTICLE_SUBJECT_DATA
+164,Periferik Damar Hastalıkları,Fen > Tıp > Periferik Damar Hastalıkları,Fen,Tıp,Periferik Damar Hastalıkları,3,LEAF_SUBJECT,Fen > Tıp > Periferik Damar Hastalıkları,ARTICLE_SUBJECT_DATA
+165,Polimer Bilimi,Fen > Mühendislik > Polimer Bilimi,Fen,Mühendislik,Polimer Bilimi,3,LEAF_SUBJECT,Fen > Mühendislik > Polimer Bilimi,ARTICLE_SUBJECT_DATA
+166,Psikiyatri,Fen > Tıp > Psikiyatri,Fen,Tıp,Psikiyatri,3,LEAF_SUBJECT,Fen > Tıp > Psikiyatri,ARTICLE_SUBJECT_DATA
+167,Psikoloji,Sosyal > Sosyal > Psikoloji,Sosyal,Sosyal,Psikoloji,3,LEAF_SUBJECT,Sosyal > Sosyal > Psikoloji,ARTICLE_SUBJECT_DATA
+168,"Radyoloji, Nükleer Tıp, Tıbbi Görüntüleme","Fen > Tıp > Radyoloji, Nükleer Tıp, Tıbbi Görüntüleme",Fen,Tıp,"Radyoloji, Nükleer Tıp, Tıbbi Görüntüleme",3,LEAF_SUBJECT,"Fen > Tıp > Radyoloji, Nükleer Tıp, Tıbbi Görüntüleme",ARTICLE_SUBJECT_DATA
+169,Rehabilitasyon,Fen > Tıp > Rehabilitasyon,Fen,Tıp,Rehabilitasyon,3,LEAF_SUBJECT,Fen > Tıp > Rehabilitasyon,ARTICLE_SUBJECT_DATA
+170,Robotik,Fen > Mühendislik > Robotik,Fen,Mühendislik,Robotik,3,LEAF_SUBJECT,Fen > Mühendislik > Robotik,ARTICLE_SUBJECT_DATA
+171,Romatoloji,Fen > Tıp > Romatoloji,Fen,Tıp,Romatoloji,3,LEAF_SUBJECT,Fen > Tıp > Romatoloji,ARTICLE_SUBJECT_DATA
+172,Sağlık Bilimleri ve Hizmetleri,Fen > Tıp > Sağlık Bilimleri ve Hizmetleri,Fen,Tıp,Sağlık Bilimleri ve Hizmetleri,3,LEAF_SUBJECT,Fen > Tıp > Sağlık Bilimleri ve Hizmetleri,ARTICLE_SUBJECT_DATA
+173,Sağlık Politikaları ve Hizmetleri,Sosyal > Sosyal > Sağlık Politikaları ve Hizmetleri,Sosyal,Sosyal,Sağlık Politikaları ve Hizmetleri,3,LEAF_SUBJECT,Sosyal > Sosyal > Sağlık Politikaları ve Hizmetleri,ARTICLE_SUBJECT_DATA
+174,Sanat,Sosyal > Sosyal > Sanat,Sosyal,Sosyal,Sanat,3,LEAF_SUBJECT,Sosyal > Sosyal > Sanat,ARTICLE_SUBJECT_DATA
+175,Savunma Bilimleri,Fen > Mühendislik > Savunma Bilimleri,Fen,Mühendislik,Savunma Bilimleri,3,LEAF_SUBJECT,Fen > Mühendislik > Savunma Bilimleri,ARTICLE_SUBJECT_DATA
+176,Siyasi Bilimler,Sosyal > Sosyal > Siyasi Bilimler,Sosyal,Sosyal,Siyasi Bilimler,3,LEAF_SUBJECT,Sosyal > Sosyal > Siyasi Bilimler,ARTICLE_SUBJECT_DATA
+177,Solunum Sistemi,Fen > Tıp > Solunum Sistemi,Fen,Tıp,Solunum Sistemi,3,LEAF_SUBJECT,Fen > Tıp > Solunum Sistemi,ARTICLE_SUBJECT_DATA
+178,Sosyal Çalışma,Sosyal > Sosyal > Sosyal Çalışma,Sosyal,Sosyal,Sosyal Çalışma,3,LEAF_SUBJECT,Sosyal > Sosyal > Sosyal Çalışma,ARTICLE_SUBJECT_DATA
+179,Sosyoloji,Sosyal > Sosyal > Sosyoloji,Sosyal,Sosyal,Sosyoloji,3,LEAF_SUBJECT,Sosyal > Sosyal > Sosyoloji,ARTICLE_SUBJECT_DATA
+180,Spektroskopi,Fen > Temel Bilimler > Spektroskopi,Fen,Temel Bilimler,Spektroskopi,3,LEAF_SUBJECT,Fen > Temel Bilimler > Spektroskopi,ARTICLE_SUBJECT_DATA
+181,Spor Bilimleri,Fen > Tıp > Spor Bilimleri,Fen,Tıp,Spor Bilimleri,3,LEAF_SUBJECT,Fen > Tıp > Spor Bilimleri,ARTICLE_SUBJECT_DATA
+182,Su Kaynakları,Fen > Temel Bilimler > Su Kaynakları,Fen,Temel Bilimler,Su Kaynakları,3,LEAF_SUBJECT,Fen > Temel Bilimler > Su Kaynakları,ARTICLE_SUBJECT_DATA
+183,Tamamlayıcı ve Entegre Tıp,Fen > Tıp > Tamamlayıcı ve Entegre Tıp,Fen,Tıp,Tamamlayıcı ve Entegre Tıp,3,LEAF_SUBJECT,Fen > Tıp > Tamamlayıcı ve Entegre Tıp,ARTICLE_SUBJECT_DATA
+184,Tarımsal Ekonomi ve Politika,Fen > Ziraat > Tarımsal Ekonomi ve Politika,Fen,Ziraat,Tarımsal Ekonomi ve Politika,3,LEAF_SUBJECT,Fen > Ziraat > Tarımsal Ekonomi ve Politika,ARTICLE_SUBJECT_DATA
+185,Tarih,Sosyal > Sosyal > Tarih,Sosyal,Sosyal,Tarih,3,LEAF_SUBJECT,Sosyal > Sosyal > Tarih,ARTICLE_SUBJECT_DATA
+187,Taşınım Bilimi ve Teknolojisi,Fen > Mühendislik > Taşınım Bilimi ve Teknolojisi,Fen,Mühendislik,Taşınım Bilimi ve Teknolojisi,3,LEAF_SUBJECT,Fen > Mühendislik > Taşınım Bilimi ve Teknolojisi,ARTICLE_SUBJECT_DATA
+188,Telekomünikasyon,Fen > Mühendislik > Telekomünikasyon,Fen,Mühendislik,Telekomünikasyon,3,LEAF_SUBJECT,Fen > Mühendislik > Telekomünikasyon,ARTICLE_SUBJECT_DATA
+189,Temel Sağlık Hizmetleri,Fen > Tıp > Temel Sağlık Hizmetleri,Fen,Tıp,Temel Sağlık Hizmetleri,3,LEAF_SUBJECT,Fen > Tıp > Temel Sağlık Hizmetleri,ARTICLE_SUBJECT_DATA
+190,Termodinamik,Fen > Temel Bilimler > Termodinamik,Fen,Temel Bilimler,Termodinamik,3,LEAF_SUBJECT,Fen > Temel Bilimler > Termodinamik,ARTICLE_SUBJECT_DATA
+191,Tıbbi Araştırmalar Deneysel,Fen > Tıp > Tıbbi Araştırmalar Deneysel,Fen,Tıp,Tıbbi Araştırmalar Deneysel,3,LEAF_SUBJECT,Fen > Tıp > Tıbbi Araştırmalar Deneysel,ARTICLE_SUBJECT_DATA
+192,Tıbbi Etik,Fen > Tıp > Tıbbi Etik,Fen,Tıp,Tıbbi Etik,3,LEAF_SUBJECT,Fen > Tıp > Tıbbi Etik,ARTICLE_SUBJECT_DATA
+193,Tıbbi İnformatik,Fen > Tıp > Tıbbi İnformatik,Fen,Tıp,Tıbbi İnformatik,3,LEAF_SUBJECT,Fen > Tıp > Tıbbi İnformatik,ARTICLE_SUBJECT_DATA
+194,Tıbbi Laboratuar Teknolojisi,Fen > Tıp > Tıbbi Laboratuar Teknolojisi,Fen,Tıp,Tıbbi Laboratuar Teknolojisi,3,LEAF_SUBJECT,Fen > Tıp > Tıbbi Laboratuar Teknolojisi,ARTICLE_SUBJECT_DATA
+195,Tiyatro,Sosyal > Sosyal > Tiyatro,Sosyal,Sosyal,Tiyatro,3,LEAF_SUBJECT,Sosyal > Sosyal > Tiyatro,ARTICLE_SUBJECT_DATA
+196,Toksikoloji,Fen > Eczacılık > Toksikoloji,Fen,Eczacılık,Toksikoloji,3,LEAF_SUBJECT,Fen > Eczacılık > Toksikoloji,ARTICLE_SUBJECT_DATA
+197,Transplantasyon,Fen > Tıp > Transplantasyon,Fen,Tıp,Transplantasyon,3,LEAF_SUBJECT,Fen > Tıp > Transplantasyon,ARTICLE_SUBJECT_DATA
+198,Tropik Tıp,Fen > Tıp > Tropik Tıp,Fen,Tıp,Tropik Tıp,3,LEAF_SUBJECT,Fen > Tıp > Tropik Tıp,ARTICLE_SUBJECT_DATA
+199,Uluslararası İlişkiler,Sosyal > Sosyal > Uluslararası İlişkiler,Sosyal,Sosyal,Uluslararası İlişkiler,3,LEAF_SUBJECT,Sosyal > Sosyal > Uluslararası İlişkiler,ARTICLE_SUBJECT_DATA
+200,Üroloji ve Nefroloji,Fen > Tıp > Üroloji ve Nefroloji,Fen,Tıp,Üroloji ve Nefroloji,3,LEAF_SUBJECT,Fen > Tıp > Üroloji ve Nefroloji,ARTICLE_SUBJECT_DATA
+201,Veterinerlik,Fen > Veterinerlik > Veterinerlik,Fen,Veterinerlik,Veterinerlik,3,LEAF_SUBJECT,Fen > Veterinerlik > Veterinerlik,ARTICLE_SUBJECT_DATA
+202,Viroloji,Fen > Temel Bilimler > Viroloji,Fen,Temel Bilimler,Viroloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Viroloji,ARTICLE_SUBJECT_DATA
+203,"Yeşil, Sürdürülebilir Bilim ve Teknoloji","Fen > Mühendislik > Yeşil, Sürdürülebilir Bilim ve Teknoloji",Fen,Mühendislik,"Yeşil, Sürdürülebilir Bilim ve Teknoloji",3,LEAF_SUBJECT,"Fen > Mühendislik > Yeşil, Sürdürülebilir Bilim ve Teknoloji",ARTICLE_SUBJECT_DATA
+204,"Yoğun Bakım, Tıp","Fen > Tıp > Yoğun Bakım, Tıp",Fen,Tıp,"Yoğun Bakım, Tıp",3,LEAF_SUBJECT,"Fen > Tıp > Yoğun Bakım, Tıp",ARTICLE_SUBJECT_DATA
+205,Ziraat Mühendisliği,Fen > Ziraat > Ziraat Mühendisliği,Fen,Ziraat,Ziraat Mühendisliği,3,LEAF_SUBJECT,Fen > Ziraat > Ziraat Mühendisliği,ARTICLE_SUBJECT_DATA
+206,"Ziraat, Toprak Bilimi","Fen > Ziraat > Ziraat, Toprak Bilimi",Fen,Ziraat,"Ziraat, Toprak Bilimi",3,LEAF_SUBJECT,"Fen > Ziraat > Ziraat, Toprak Bilimi",ARTICLE_SUBJECT_DATA
+207,Zooloji,Fen > Temel Bilimler > Zooloji,Fen,Temel Bilimler,Zooloji,3,LEAF_SUBJECT,Fen > Temel Bilimler > Zooloji,ARTICLE_SUBJECT_DATA
+,Multidisipliner – Fen,Fen > Multidisipliner – Fen,Fen,Multidisipliner – Fen,,2,SUB_FIELD,Fen > Multidisipliner – Fen,TRDIZIN_CURRENT_TAXONOMY
+,Multidisipliner – Sosyal,Sosyal > Multidisipliner – Sosyal,Sosyal,Multidisipliner – Sosyal,,2,SUB_FIELD,Sosyal > Multidisipliner – Sosyal,TRDIZIN_CURRENT_TAXONOMY
