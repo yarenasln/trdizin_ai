@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Makale Detayı | TR Dizin AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1350px;
+            margin: auto;
+            padding: 28px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 18px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .section {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .section h2,
+        .section h3 {
+            margin-top: 0;
+        }
+
+        .title {
+            font-size: 23px;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .meta {
+            background: #f9fafb;
+            padding: 13px;
+            border-radius: 8px;
+        }
+
+        .label {
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .abstract {
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .system {
+            border-top: 4px solid #2563eb;
+        }
+
+        .trdizin {
+            border-top: 4px solid #7c3aed;
+        }
+
+        .hierarchy-row {
+            padding: 14px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .hierarchy-row:last-child {
+            border-bottom: none;
+        }
+
+        .hierarchy-title {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .hierarchy-value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .confidence {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .progress {
+            height: 9px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 7px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #2563eb;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 7px;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .cluster-box {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .cluster-stat {
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .cluster-stat .number {
+            font-size: 23px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .note {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 14px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        @media(max-width: 800px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h1>TR Dizin AI Konu Analiz Sistemi</h1>
+
+    <div class="nav-links">
+        <a href="/">Dashboard</a>
+        <a href="/articles">Makaleler</a>
+        <a href="/k-analysis">K-Means Analizi</a>
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <a class="back" href="/articles">
+        ← Makale Listesine Dön
+    </a>
+
+
+    <!-- ================================================= -->
+    <!-- MAKALE BİLGİLERİ -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <div class="title">
+            {{ article.title }}
+        </div>
+
+        <div class="meta-grid">
+
+            <div class="meta">
+                <div class="label">Article ID</div>
+                <div class="value">
+                    {{ article.article_id }}
+                </div>
+            </div>
+
+            <div class="meta">
+                <div class="label">DOI</div>
+                <div class="value">
+                    {% if article.doi %}
+                        {{ article.doi }}
+                    {% else %}
+                        DOI bulunamadı
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="meta">
+                <div class="label">Yayın Yılı</div>
+                <div class="value">
+                    {{ article.publication_year }}
+                </div>
+            </div>
+
+            <div class="meta">
+                <div class="label">Dil</div>
+                <div class="value">
+                    {{ article.languages }}
+                </div>
+            </div>
+
+            <div class="meta">
+                <div class="label">Yayın Tipi</div>
+                <div class="value">
+                    {{ article.publication_type }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ÖZET -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <h3>Makale Özeti</h3>
+
+        <div class="abstract">
+
+            {% if article.abstract %}
+                {{ article.abstract }}
+            {% else %}
+                Bu makale için özet bulunamadı.
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- KEYWORDS -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <h3>Anahtar Kelimeler</h3>
+
+        {% if article.keywords %}
+            {{ article.keywords }}
+        {% else %}
+            Anahtar kelime bulunamadı.
+        {% endif %}
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SİSTEM VS TR DİZİN -->
+    <!-- ================================================= -->
+
+    <div class="comparison">
+
+        <!-- BİZİM SİSTEM -->
+
+        <div class="section system">
+
+            <h3>Bizim Sistemin Tahmini</h3>
+
+
+            <!-- ANA ALAN -->
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    ANA ALAN
+                </div>
+
+                <div class="hierarchy-value">
+
+                    {% if article.main_found %}
+                        {{ article.predicted_main_field }}
+                    {% else %}
+                        Bulunamadı
+                    {% endif %}
+
+                </div>
+
+                <div class="confidence">
+
+                    Güven:
+                    %{{ "%.2f"|format(article.main_confidence * 100) }}
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{ article.main_confidence * 100 }}%"
+                    ></div>
+
+                </div>
+
+                {% if article.main_match %}
+
+                    <span class="badge success">
+                        TR Dizin ile exact uyumlu
+                    </span>
+
+                {% else %}
+
+                    <span class="badge danger">
+                        TR Dizin ile birebir uyuşmuyor
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ALT ALAN -->
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    ALT ALAN
+                </div>
+
+                <div class="hierarchy-value">
+
+                    {% if article.sub_found %}
+                        {{ article.predicted_sub_field }}
+                    {% else %}
+                        Bulunamadı
+                    {% endif %}
+
+                </div>
+
+                <div class="confidence">
+
+                    Güven:
+                    %{{ "%.2f"|format(
+                        article.sub_confidence_within_main * 100
+                    ) }}
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{
+                            article.sub_confidence_within_main * 100
+                        }}%"
+                    ></div>
+
+                </div>
+
+                {% if article.sub_match %}
+
+                    <span class="badge success">
+                        TR Dizin ile exact uyumlu
+                    </span>
+
+                {% else %}
+
+                    <span class="badge danger">
+                        TR Dizin ile birebir uyuşmuyor
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- LEAF -->
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    EN ALT KONU (LEAF)
+                </div>
+
+                <div class="hierarchy-value">
+
+                    {% if article.leaf_found %}
+                        {{ article.predicted_subject }}
+                    {% else %}
+                        Bulunamadı
+                    {% endif %}
+
+                </div>
+
+                <div class="confidence">
+
+                    Güven:
+                    %{{ "%.2f"|format(
+                        article.leaf_confidence_within_sub * 100
+                    ) }}
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{
+                            article.leaf_confidence_within_sub * 100
+                        }}%"
+                    ></div>
+
+                </div>
+
+                {% if article.leaf_match %}
+
+                    <span class="badge success">
+                        TR Dizin ile exact uyumlu
+                    </span>
+
+                {% else %}
+
+                    <span class="badge warning">
+                        TR Dizin ile birebir uyuşmuyor
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- TR DİZİN -->
+
+        <div class="section trdizin">
+
+            <h3>TR Dizin Mevcut Etiketleri</h3>
+
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    ANA ALAN
+                </div>
+
+                <div class="hierarchy-value">
+                    {{ article.trdizin_main_fields }}
+                </div>
+
+            </div>
+
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    ALT ALAN
+                </div>
+
+                <div class="hierarchy-value">
+                    {{ article.trdizin_sub_fields }}
+                </div>
+
+            </div>
+
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    EN ALT KONULAR
+                </div>
+
+                <div class="hierarchy-value">
+                    {{ article.trdizin_leaf_subjects }}
+                </div>
+
+            </div>
+
+
+            <div class="hierarchy-row">
+
+                <div class="hierarchy-title">
+                    TAM TR DİZİN YOLLARI
+                </div>
+
+                <div class="hierarchy-value">
+                    {{ article.trdizin_subject_paths }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- CLUSTER -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <h3>Küme Bilgisi</h3>
+
+        <div class="cluster-box">
+
+            <div class="cluster-stat">
+
+                <div class="label">
+                    Cluster ID
+                </div>
+
+                <div class="number">
+                    {{ article.cluster_id }}
+                </div>
+
+            </div>
+
+
+            <div class="cluster-stat">
+
+                <div class="label">
+                    Cluster Büyüklüğü
+                </div>
+
+                <div class="number">
+                    {{ article.cluster_size }}
+                </div>
+
+            </div>
+
+
+            <div class="cluster-stat">
+
+                <div class="label">
+                    Cluster Benzerliği
+                </div>
+
+                <div class="number">
+                    {{ "%.3f"|format(article.cluster_similarity) }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- AÇIKLAMA -->
+    <!-- ================================================= -->
+
+    <div class="note">
+
+        <strong>Not:</strong>
+
+        “TR Dizin ile uyuşmuyor” ifadesi sistem tahmininin
+        otomatik olarak yanlış olduğu anlamına gelmez.
+        Burada yalnızca sistem tarafından içerikten çıkarılan
+        tahmin ile TR Dizin'deki mevcut etiket arasında
+        birebir eşleşme olup olmadığı gösterilmektedir.
+
+    </div>
+
+</div>
+
+</body>
+</html>

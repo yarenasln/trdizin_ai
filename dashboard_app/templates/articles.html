@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Makaleler | TR Dizin AI
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 16px 28px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1550px;
+            margin: auto;
+            padding: 28px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h2 {
+            margin: 0 0 6px 0;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .count-badge {
+            background: #111827;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+
+        /* ============================================= */
+        /* FİLTRELER */
+        /* ============================================= */
+
+        .filter-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(0,0,0,0.07);
+
+            margin-bottom: 22px;
+        }
+
+        .filters {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(190px, 1fr)
+                );
+
+            gap: 12px;
+        }
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 11px;
+
+            border:
+                1px solid
+                #d1d5db;
+
+            border-radius: 7px;
+
+            background: white;
+        }
+
+        .filter-buttons {
+
+            margin-top: 14px;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        /* ============================================= */
+        /* BUTON */
+        /* ============================================= */
+
+        .button {
+
+            display: inline-block;
+
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 11px 16px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+        }
+
+        .button.secondary {
+            background: #4b5563;
+        }
+
+
+        /* ============================================= */
+        /* MAKALELER */
+        /* ============================================= */
+
+        .articles {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+
+        .article-card {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 2px 8px
+                rgba(0,0,0,0.06);
+        }
+
+
+        .article-top {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 20px;
+        }
+
+
+        .article-title {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+            line-height: 1.4;
+        }
+
+
+        .doi {
+
+            font-size: 13px;
+
+            color: #4b5563;
+
+            margin-bottom: 10px;
+        }
+
+
+        .abstract {
+
+            color: #6b7280;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+        }
+
+
+        /* ============================================= */
+        /* TR DİZİN */
+        /* ============================================= */
+
+        .trdizin-box {
+
+            margin-top: 14px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background: #f5f3ff;
+
+            border-left:
+                4px solid
+                #7c3aed;
+        }
+
+
+        .trdizin-title {
+
+            font-size: 11px;
+
+            color: #6b7280;
+
+            margin-bottom: 5px;
+
+            font-weight: bold;
+        }
+
+
+        .trdizin-value {
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ============================================= */
+        /* TAHMİNLER */
+        /* ============================================= */
+
+        .prediction-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 16px;
+        }
+
+
+        .prediction {
+
+            background: #f9fafb;
+
+            padding: 12px;
+
+            border-radius: 8px;
+        }
+
+
+        .prediction-label {
+
+            font-size: 11px;
+
+            color: #6b7280;
+
+            text-transform:
+                uppercase;
+
+            margin-bottom: 5px;
+        }
+
+
+        .prediction-value {
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* ============================================= */
+        /* BADGE */
+        /* ============================================= */
+
+        .status-row {
+
+            margin-top: 14px;
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .badge {
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        .success {
+
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        .warning {
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .danger {
+
+            background: #fee2e2;
+
+            color: #991b1b;
+        }
+
+
+        .neutral {
+
+            background: #e5e7eb;
+
+            color: #374151;
+        }
+
+
+        .trdizin-found {
+
+            background: #ede9fe;
+
+            color: #5b21b6;
+        }
+
+
+        .detail-button {
+            white-space: nowrap;
+        }
+
+
+        /* ============================================= */
+        /* SAYFALAMA */
+        /* ============================================= */
+
+        .pagination {
+
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content:
+                center;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .pagination a {
+
+            text-decoration: none;
+
+            background: #111827;
+
+            color: white;
+
+            padding: 9px 14px;
+
+            border-radius: 7px;
+        }
+
+
+        .pagination span {
+
+            font-size: 14px;
+        }
+
+
+        .empty {
+
+            background: white;
+
+            padding: 40px;
+
+            text-align: center;
+
+            border-radius: 12px;
+        }
+
+
+        @media(max-width: 800px) {
+
+            .prediction-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .article-top {
+
+                flex-direction:
+                    column;
+            }
+
+            .page-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+            .navbar {
+
+                flex-direction:
+                    column;
+
+                gap: 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ===================================================== -->
+<!-- NAVBAR -->
+<!-- ===================================================== -->
+
+<div class="navbar">
+
+    <h1>
+        TR Dizin AI Konu Analiz Sistemi
+    </h1>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Dashboard
+        </a>
+
+        <a href="/articles">
+            Makaleler
+        </a>
+
+        <a href="/k-analysis">
+            K-Means Analizi
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+    <!-- ================================================= -->
+    <!-- BAŞLIK -->
+    <!-- ================================================= -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>
+                Makale İnceleme
+            </h2>
+
+            <p>
+                Sistem tahminleri ve
+                TR Dizin mevcut etiketleri
+                birlikte gösterilmektedir.
+            </p>
+
+        </div>
+
+
+        <div class="count-badge">
+
+            {{ total_filtered }}
+            makale
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- FİLTRELER -->
+    <!-- ================================================= -->
+
+    <div class="filter-box">
+
+        <form
+            method="GET"
+            action="/articles"
+        >
+
+            <div class="filters">
+
+
+                <!-- ARAMA -->
+
+                <div>
+
+                    <input
+                        type="text"
+                        name="q"
+                        placeholder="Başlık, özet veya DOI ara..."
+                        value="{{ request.args.get('q', '') }}"
+                    >
+
+                </div>
+
+
+                <!-- TR DİZİN ETİKET DURUMU -->
+
+                <div>
+
+                    <select
+                        name="trdizin_status"
+                    >
+
+                        <option value="">
+                            Tüm TR Dizin Etiketleri
+                        </option>
+
+
+                        <option
+                            value="FOUND"
+
+                            {% if request.args.get('trdizin_status') == 'FOUND' %}
+                            selected
+                            {% endif %}
+                        >
+                            TR Dizin Etiketi Bulunan
+                        </option>
+
+
+                        <option
+                            value="MISSING"
+
+                            {% if request.args.get('trdizin_status') == 'MISSING' %}
+                            selected
+                            {% endif %}
+                        >
+                            TR Dizin Etiketi Bulunmayan
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ANA ALAN -->
+
+                <div>
+
+                    <select
+                        name="main_field"
+                    >
+
+                        <option value="">
+                            Tüm Ana Alanlar
+                        </option>
+
+
+                        <option
+                            value="MISSING"
+
+                            {% if request.args.get('main_field') == 'MISSING' %}
+                            selected
+                            {% endif %}
+                        >
+                            Ana Alan Bulunamayan
+                        </option>
+
+
+                        {% for field in main_fields %}
+
+                        <option
+                            value="{{ field }}"
+
+                            {% if request.args.get('main_field') == field %}
+                            selected
+                            {% endif %}
+                        >
+                            {{ field }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- ALT ALAN -->
+
+                <div>
+
+                    <select
+                        name="sub_field"
+                    >
+
+                        <option value="">
+                            Tüm Alt Alanlar
+                        </option>
+
+
+                        <option
+                            value="MISSING"
+
+                            {% if request.args.get('sub_field') == 'MISSING' %}
+                            selected
+                            {% endif %}
+                        >
+                            Alt Alan Bulunamayan
+                        </option>
+
+
+                        {% for field in sub_fields %}
+
+                        <option
+                            value="{{ field }}"
+
+                            {% if request.args.get('sub_field') == field %}
+                            selected
+                            {% endif %}
+                        >
+                            {{ field }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- LEAF -->
+
+                <div>
+
+                    <select
+                        name="leaf_status"
+                    >
+
+                        <option value="">
+                            Tüm Konu Durumları
+                        </option>
+
+
+                        <option
+                            value="FOUND"
+
+                            {% if request.args.get('leaf_status') == 'FOUND' %}
+                            selected
+                            {% endif %}
+                        >
+                            Leaf Konu Bulunan
+                        </option>
+
+
+                        <option
+                            value="MISSING"
+
+                            {% if request.args.get('leaf_status') == 'MISSING' %}
+                            selected
+                            {% endif %}
+                        >
+                            Leaf Konu Bulunamayan
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DOI -->
+
+                <div>
+
+                    <select
+                        name="doi_status"
+                    >
+
+                        <option value="">
+                            Tüm DOI Durumları
+                        </option>
+
+
+                        <option
+                            value="FOUND"
+
+                            {% if request.args.get('doi_status') == 'FOUND' %}
+                            selected
+                            {% endif %}
+                        >
+                            DOI Bulunan
+                        </option>
+
+
+                        <option
+                            value="MISSING"
+
+                            {% if request.args.get('doi_status') == 'MISSING' %}
+                            selected
+                            {% endif %}
+                        >
+                            DOI Bulunmayan
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- UYUM -->
+
+                <div>
+
+                    <select
+                        name="match_status"
+                    >
+
+                        <option value="">
+                            Tüm Uyum Durumları
+                        </option>
+
+
+                        <option
+                            value="MAIN_MATCH"
+
+                            {% if request.args.get('match_status') == 'MAIN_MATCH' %}
+                            selected
+                            {% endif %}
+                        >
+                            Ana Alan Uyumlu
+                        </option>
+
+
+                        <option
+                            value="MAIN_MISMATCH"
+
+                            {% if request.args.get('match_status') == 'MAIN_MISMATCH' %}
+                            selected
+                            {% endif %}
+                        >
+                            Ana Alan Uyuşmuyor
+                        </option>
+
+
+                        <option
+                            value="SUB_MATCH"
+
+                            {% if request.args.get('match_status') == 'SUB_MATCH' %}
+                            selected
+                            {% endif %}
+                        >
+                            Alt Alan Uyumlu
+                        </option>
+
+
+                        <option
+                            value="SUB_MISMATCH"
+
+                            {% if request.args.get('match_status') == 'SUB_MISMATCH' %}
+                            selected
+                            {% endif %}
+                        >
+                            Alt Alan Uyuşmuyor
+                        </option>
+
+
+                        <option
+                            value="LEAF_MATCH"
+
+                            {% if request.args.get('match_status') == 'LEAF_MATCH' %}
+                            selected
+                            {% endif %}
+                        >
+                            Leaf Uyumlu
+                        </option>
+
+
+                        <option
+                            value="LEAF_MISMATCH"
+
+                            {% if request.args.get('match_status') == 'LEAF_MISMATCH' %}
+                            selected
+                            {% endif %}
+                        >
+                            Leaf Uyuşmuyor
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTONLAR -->
+
+            <div class="filter-buttons">
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Filtrele
+                </button>
+
+
+                <a
+                    href="/articles"
+                    class="button secondary"
+                >
+                    Filtreleri Temizle
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- MAKALELER -->
+    <!-- ================================================= -->
+
+    {% if articles %}
+
+
+    <div class="articles">
+
+
+        {% for article in articles %}
+
+
+        <div class="article-card">
+
+
+            <div class="article-top">
+
+
+                <div>
+
+
+                    <div class="article-title">
+
+                        {{ article.title }}
+
+                    </div>
+
+
+                    <div class="doi">
+
+                        <strong>
+                            DOI:
+                        </strong>
+
+
+                        {% if article.doi %}
+
+                            {{ article.doi }}
+
+                        {% else %}
+
+                            DOI bulunamadı
+
+                        {% endif %}
+
+
+                        &nbsp; | &nbsp;
+
+
+                        <strong>
+                            Dil:
+                        </strong>
+
+                        {{ article.display_language }}
+
+                    </div>
+
+
+                    <div class="abstract">
+
+                        {% if article.abstract_preview %}
+
+                            {{ article.abstract_preview }}
+
+                        {% else %}
+
+                            Özet bulunamadı.
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ================================= -->
+                    <!-- TR DİZİN ETİKETİ -->
+                    <!-- ================================= -->
+
+                    <div class="trdizin-box">
+
+                        <div class="trdizin-title">
+
+                            TR DİZİN MEVCUT ETİKETLERİ
+
+                        </div>
+
+
+                        <div class="trdizin-value">
+
+                            {% if article.has_trdizin_subject %}
+
+                                {{ article.trdizin_subject_paths }}
+
+                            {% else %}
+
+                                TR Dizin etiketi bulunamadı.
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="detail-button">
+
+                    <a
+                        class="button"
+                        href="/article/{{ article.article_id }}"
+                    >
+                        Detay
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- SİSTEM TAHMİNLERİ -->
+            <!-- ========================================= -->
+
+            <div class="prediction-grid">
+
+
+                <!-- ANA -->
+
+                <div class="prediction">
+
+                    <div class="prediction-label">
+
+                        Sistem Ana Alan
+
+                    </div>
+
+
+                    <div class="prediction-value">
+
+                        {% if article.main_found %}
+
+                            {{ article.predicted_main_field }}
+
+                        {% else %}
+
+                            Bulunamadı
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ALT -->
+
+                <div class="prediction">
+
+                    <div class="prediction-label">
+
+                        Sistem Alt Alan
+
+                    </div>
+
+
+                    <div class="prediction-value">
+
+                        {% if article.sub_found %}
+
+                            {{ article.predicted_sub_field }}
+
+                        {% else %}
+
+                            Bulunamadı
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- LEAF -->
+
+                <div class="prediction">
+
+                    <div class="prediction-label">
+
+                        Sistem Leaf Konu
+
+                    </div>
+
+
+                    <div class="prediction-value">
+
+                        {% if article.leaf_found %}
+
+                            {{ article.predicted_subject }}
+
+                        {% else %}
+
+                            Bulunamadı
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ========================================= -->
+            <!-- DURUMLAR -->
+            <!-- ========================================= -->
+
+            <div class="status-row">
+
+
+                <!-- TR DİZİN -->
+
+                {% if article.has_trdizin_subject %}
+
+                    <span
+                        class="badge trdizin-found"
+                    >
+                        TR Dizin Etiketi Var
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge warning"
+                    >
+                        TR Dizin Etiketi Yok
+                    </span>
+
+                {% endif %}
+
+
+                <!-- ANA -->
+
+                {% if article.main_found %}
+
+                    <span
+                        class="badge success"
+                    >
+                        Ana Alan Bulundu
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge warning"
+                    >
+                        Ana Alan Bulunamadı
+                    </span>
+
+                {% endif %}
+
+
+                <!-- ALT -->
+
+                {% if article.sub_found %}
+
+                    <span
+                        class="badge success"
+                    >
+                        Alt Alan Bulundu
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge warning"
+                    >
+                        Alt Alan Bulunamadı
+                    </span>
+
+                {% endif %}
+
+
+                <!-- LEAF -->
+
+                {% if article.leaf_found %}
+
+                    <span
+                        class="badge success"
+                    >
+                        Leaf Bulundu
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge warning"
+                    >
+                        Leaf Bulunamadı
+                    </span>
+
+                {% endif %}
+
+
+                <!-- ANA UYUM -->
+
+                {% if article.main_match %}
+
+                    <span
+                        class="badge success"
+                    >
+                        Ana Alan Uyumlu
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge danger"
+                    >
+                        Ana Alan Uyuşmuyor
+                    </span>
+
+                {% endif %}
+
+
+                <!-- ALT UYUM -->
+
+                {% if article.sub_match %}
+
+                    <span
+                        class="badge success"
+                    >
+                        Alt Alan Uyumlu
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge danger"
+                    >
+                        Alt Alan Uyuşmuyor
+                    </span>
+
+                {% endif %}
+
+
+                <!-- LEAF UYUM -->
+
+                {% if article.leaf_match %}
+
+                    <span
+                        class="badge success"
+                    >
+                        Leaf Exact Uyumlu
+                    </span>
+
+                {% else %}
+
+                    <span
+                        class="badge neutral"
+                    >
+                        Leaf Exact Uyuşmuyor
+                    </span>
+
+                {% endif %}
+
+
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SAYFALAMA -->
+    <!-- ================================================= -->
+
+    <div class="pagination">
+
+
+        {% if page > 1 %}
+
+            <a
+                href="{{ request.full_path }}&page={{ page - 1 }}"
+            >
+                ← Önceki
+            </a>
+
+        {% endif %}
+
+
+        <span>
+
+            Sayfa
+            {{ page }}
+            /
+            {{ total_pages }}
+
+        </span>
+
+
+        {% if page < total_pages %}
+
+            <a
+                href="{{ request.full_path }}&page={{ page + 1 }}"
+            >
+                Sonraki →
+            </a>
+
+        {% endif %}
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <div class="empty">
+
+        <h3>
+            Makale bulunamadı
+        </h3>
+
+        <p>
+            Seçilen filtrelere uygun
+            makale bulunamadı.
+        </p>
+
+        <a
+            href="/articles"
+            class="button"
+        >
+            Filtreleri Temizle
+        </a>
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+</html>

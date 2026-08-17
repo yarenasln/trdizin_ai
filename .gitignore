@@ -4,3 +4,32 @@ __pycache__/
 .env
 data/
 embeddings/
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Büyük model / embedding dosyalarý
+*.npy
+*.joblib
+embeddings/
+models/
+
+# Üretilen sonuç dosyalarý
+results/
+
+# Deney CSV çýktýlarý
+*_results.csv
+*_predictions.csv
+*_mismatches.csv
+*_analysis.csv
+*_summary.csv
+*_clusters.csv
+*_centroids.csv
+
+# Manuel inceleme çýktýlarý
+manual_review_*.csv
+
+# Yerel / üretilmiþ veri
+real_trdizin_texts.csv
+

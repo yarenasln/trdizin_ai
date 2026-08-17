@@ -6,7 +6,7 @@ import time
 
 API_URL = "https://search.trdizin.gov.tr/api/defaultSearch/publication/"
 
-PER_SUBJECT_LIMIT = 5
+PER_SUBJECT_LIMIT = 25
 
 
 # --------------------------------------------------
@@ -262,4 +262,4 @@ except Exception as error:
 finally:
 
     cursor.close()
-    conn.close()
+    conn.close()    

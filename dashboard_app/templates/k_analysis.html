@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>K-Means Analizi | TR Dizin AI</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1450px;
+            margin: auto;
+            padding: 28px;
+        }
+
+        .header h2 {
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            color: #6b7280;
+            margin-top: 0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .card-title {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .card-value {
+            font-size: 29px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .selected {
+            border: 2px solid #2563eb;
+        }
+
+        .section {
+            background: white;
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        .section h3 {
+            margin-top: 0;
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+
+        .chart-box {
+            height: 400px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 11px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        th {
+            background: #f9fafb;
+        }
+
+        .chosen-row {
+            background: #dbeafe;
+            font-weight: bold;
+        }
+
+        .explanation {
+            line-height: 1.7;
+        }
+
+        .decision {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 18px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .warning {
+            background: #fffbeb;
+            border-left: 5px solid #d97706;
+            padding: 18px;
+            border-radius: 8px;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        @media(max-width: 800px) {
+            .charts {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h1>TR Dizin AI Konu Analiz Sistemi</h1>
+
+    <div class="nav-links">
+        <a href="/">Dashboard</a>
+        <a href="/articles">Makaleler</a>
+        <a href="/k-analysis">K-Means Analizi</a>
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="header">
+
+        <h2>K-Means K Değeri Analizi</h2>
+
+        <p>
+            Farklı K değerlerinin küme kalitesi ve
+            konu uyumu üzerindeki etkisinin karşılaştırılması.
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SEÇİLEN MODEL -->
+    <!-- ================================================= -->
+
+    <div class="cards">
+
+        <div class="card selected">
+
+            <div class="card-title">
+                Final K
+            </div>
+
+            <div class="card-value">
+                190
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-title">
+                Embedding Modeli
+            </div>
+
+            <div class="card-value" style="font-size:20px;">
+                Qwen3
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-title">
+                Embedding Boyutu
+            </div>
+
+            <div class="card-value">
+                1024
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-title">
+                Final Cluster Sayısı
+            </div>
+
+            <div class="card-value">
+                190
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- NEDEN 190 -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <h3>Neden K = 190?</h3>
+
+        <div class="decision">
+
+            K değeri yalnızca en yüksek Silhouette veya
+            en yüksek Purity değerine göre seçilmedi.
+
+            <br><br>
+
+            <strong>K = 190</strong> değerinde;
+
+            Silhouette = <strong>0.053912</strong>,
+            Weighted Purity = <strong>0.553500</strong>
+            ve küçük küme sayısı düşük kaldı.
+
+            <br><br>
+
+            Bu nedenle küme içi yapı, konu uyumu ve
+            kümelerin aşırı parçalanmaması birlikte
+            değerlendirilerek K=190 final değer olarak seçildi.
+
+        </div>
+
+        <div class="warning">
+
+            K yükseldikçe Purity'nin artması tek başına
+            sistemin daha iyi olduğu anlamına gelmez.
+
+            Çok yüksek K değerlerinde makaleler daha küçük
+            kümelere ayrıldığı için konu saflığı doğal olarak
+            yükselebilir. Ancak bu durum aşırı parçalanmaya
+            neden olabilir.
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- GRAFİKLER -->
+    <!-- ================================================= -->
+
+    <div class="charts">
+
+        <div class="section">
+
+            <h3>K → Silhouette</h3>
+
+            <div class="chart-box">
+                <canvas id="silhouetteChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3>K → Weighted Purity</h3>
+
+            <div class="chart-box">
+                <canvas id="purityChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3>K → Küçük Cluster Sayısı</h3>
+
+            <p>
+                10 veya daha az makale içeren cluster sayısı.
+            </p>
+
+            <div class="chart-box">
+                <canvas id="smallClusterChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3>K → Ortalama Cluster Büyüklüğü</h3>
+
+            <div class="chart-box">
+                <canvas id="averageSizeChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- TABLO -->
+    <!-- ================================================= -->
+
+    <div class="section">
+
+        <h3>Tüm K Deneyleri</h3>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>K</th>
+                        <th>Silhouette</th>
+                        <th>Weighted Purity</th>
+                        <th>En Küçük Küme</th>
+                        <th>En Büyük Küme</th>
+                        <th>Ort. Küme</th>
+                        <th>≤ 5</th>
+                        <th>≤ 10</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for row in k_data %}
+
+                    <tr
+                        {% if row.K == 190 %}
+                        class="chosen-row"
+                        {% endif %}
+                    >
+
+                        <td>
+                            {{ row.K|int }}
+
+                            {% if row.K == 190 %}
+                                ★
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ "%.4f"|format(row.Silhouette) }}
+                        </td>
+
+                        <td>
+                            {{ "%.4f"|format(row.Weighted_Purity) }}
+                        </td>
+
+                        <td>
+                            {{ row.Smallest_Cluster|int }}
+                        </td>
+
+                        <td>
+                            {{ row.Largest_Cluster|int }}
+                        </td>
+
+                        <td>
+                            {{ "%.2f"|format(row.Average_Cluster_Size) }}
+                        </td>
+
+                        <td>
+                            {{ row.Clusters_LE_5|int }}
+                        </td>
+
+                        <td>
+                            {{ row.Clusters_LE_10|int }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SUNUM AÇIKLAMASI -->
+    <!-- ================================================= -->
+
+    <div class="section explanation">
+
+        <h3>K Değiştirildiğinde Ne Oluyor?</h3>
+
+        <p>
+            <strong>K küçük olduğunda:</strong>
+            Daha farklı konular aynı kümede birleşebilir.
+            Bu nedenle kümeler büyük olur fakat konu
+            ayrımı daha genel kalabilir.
+        </p>
+
+        <p>
+            <strong>K büyüdüğünde:</strong>
+            Konular daha küçük ve spesifik kümelere ayrılır.
+            Purity artabilir ancak çok fazla küçük küme
+            oluşmaya başlayabilir.
+        </p>
+
+        <p>
+            <strong>Bu projedeki amaç:</strong>
+            En yüksek tek metriği seçmek yerine,
+            semantik olarak anlamlı ve yeterince dengeli
+            kümeler oluşturan K değerini belirlemektir.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const kData = {{ k_data | tojson }};
+
+    const labels =
+        kData.map(row => row.K);
+
+    const silhouettes =
+        kData.map(row => row.Silhouette);
+
+    const purities =
+        kData.map(row => row.Weighted_Purity);
+
+    const smallClusters =
+        kData.map(row => row.Clusters_LE_10);
+
+    const averageSizes =
+        kData.map(row => row.Average_Cluster_Size);
+
+
+    function pointRadius() {
+
+        return labels.map(
+            k => k === 190 ? 8 : 4
+        );
+    }
+
+
+    // =====================================================
+    // SILHOUETTE
+    // =====================================================
+
+    new Chart(
+        document.getElementById("silhouetteChart"),
+        {
+            type: "line",
+
+            data: {
+                labels: labels,
+
+                datasets: [{
+                    label: "Silhouette",
+                    data: silhouettes,
+                    pointRadius: pointRadius(),
+                    tension: 0.2
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+    );
+
+
+    // =====================================================
+    // PURITY
+    // =====================================================
+
+    new Chart(
+        document.getElementById("purityChart"),
+        {
+            type: "line",
+
+            data: {
+                labels: labels,
+
+                datasets: [{
+                    label: "Weighted Purity",
+                    data: purities,
+                    pointRadius: pointRadius(),
+                    tension: 0.2
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+    );
+
+
+    // =====================================================
+    // KÜÇÜK CLUSTER
+    // =====================================================
+
+    new Chart(
+        document.getElementById("smallClusterChart"),
+        {
+            type: "bar",
+
+            data: {
+                labels: labels,
+
+                datasets: [{
+                    label: "10 veya daha az makaleli cluster",
+                    data: smallClusters
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+    );
+
+
+    // =====================================================
+    // ORTALAMA CLUSTER
+    // =====================================================
+
+    new Chart(
+        document.getElementById("averageSizeChart"),
+        {
+            type: "line",
+
+            data: {
+                labels: labels,
+
+                datasets: [{
+                    label: "Ortalama Cluster Büyüklüğü",
+                    data: averageSizes,
+                    pointRadius: pointRadius(),
+                    tension: 0.2
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+    );
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TR Dizin AI Dashboard</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 16px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1450px;
+            margin: auto;
+            padding: 28px;
+        }
+
+        .page-title {
+            margin-bottom: 22px;
+        }
+
+        .page-title h2 {
+            margin-bottom: 6px;
+        }
+
+        .page-title p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(210px, 1fr)
+                );
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow:
+                0 2px 8px
+                rgba(0,0,0,0.08);
+        }
+
+        .card-title {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .card-sub {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 24px;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow:
+                0 2px 8px
+                rgba(0,0,0,0.07);
+        }
+
+        .section h3 {
+            margin-top: 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(230px, 1fr)
+                );
+            gap: 18px;
+        }
+
+        .metric-box {
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+
+        .metric-box h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .progress {
+            margin-top: 12px;
+            width: 100%;
+            height: 11px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #2563eb;
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(420px, 1fr)
+                );
+            gap: 20px;
+        }
+
+        .chart-box {
+            min-height: 350px;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 11px 16px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .button.secondary {
+            background: #374151;
+        }
+
+        .button.warning {
+            background: #b45309;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .status-table th,
+        .status-table td {
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 11px;
+        }
+
+        .status-table th {
+            background: #f9fafb;
+        }
+
+        @media(max-width: 800px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================================== -->
+    <!-- NAVBAR -->
+    <!-- ================================================== -->
+
+    <div class="navbar">
+
+        <h1>TR Dizin AI Konu Analiz Sistemi</h1>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/articles">
+                Makaleler
+            </a>
+
+            <a href="/k-analysis">
+                K-Means Analizi
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- ================================================== -->
+        <!-- BAŞLIK -->
+        <!-- ================================================== -->
+
+        <div class="page-title">
+
+            <h2>
+                Genel Sistem Özeti
+            </h2>
+
+            <p>
+                Qwen3 embedding + K-Means konu analizi
+                ve TR Dizin hiyerarşi karşılaştırması
+            </p>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- TEMEL SAYILAR -->
+        <!-- ================================================== -->
+
+        <div class="cards">
+
+
+            <div class="card">
+
+                <div class="card-title">
+                    Toplam Makale
+                </div>
+
+                <div class="card-value">
+                    {{ stats.total_articles }}
+                </div>
+
+                <div class="card-sub">
+                    Final veri seti
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-title">
+                    DOI Bulunan
+                </div>
+
+                <div class="card-value">
+                    {{ stats.doi_found }}
+                </div>
+
+                <div class="card-sub">
+                    Bulunmayan:
+                    {{ stats.doi_missing }}
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-title">
+                    Abstract Bulunan
+                </div>
+
+                <div class="card-value">
+                    {{ stats.abstract_found }}
+                </div>
+
+                <div class="card-sub">
+                    Bulunmayan:
+                    {{ stats.abstract_missing }}
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-title">
+                    Üç Seviye de Bulunan
+                </div>
+
+                <div class="card-value">
+                    {{ stats.all_levels_found }}
+                </div>
+
+                <div class="card-sub">
+                    Ana + Alt + Leaf
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- TAHMİN DURUMU -->
+        <!-- ================================================== -->
+
+        <div class="section">
+
+            <h3>
+                Tahmin Durumu
+            </h3>
+
+            <table class="status-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Seviye
+                        </th>
+
+                        <th>
+                            Bulunan
+                        </th>
+
+                        <th>
+                            Bulunamayan
+                        </th>
+
+                        <th>
+                            İncele
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            Ana Alan
+                        </td>
+
+                        <td>
+                            {{ stats.main_found }}
+                        </td>
+
+                        <td>
+                            {{ stats.main_missing }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                class="button warning"
+                                href="/articles?main_field=MISSING"
+                            >
+                                Bulunamayanları Göster
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Alt Alan
+                        </td>
+
+                        <td>
+                            {{ stats.sub_found }}
+                        </td>
+
+                        <td>
+                            {{ stats.sub_missing }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                class="button warning"
+                                href="/articles?sub_field=MISSING"
+                            >
+                                Bulunamayanları Göster
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            Leaf Konu
+                        </td>
+
+                        <td>
+                            {{ stats.leaf_found }}
+                        </td>
+
+                        <td>
+                            {{ stats.leaf_missing }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                class="button warning"
+                                href="/articles?leaf_status=MISSING"
+                            >
+                                Bulunamayanları Göster
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- UYUM ORANLARI -->
+        <!-- ================================================== -->
+
+        <div class="section">
+
+            <h3>
+                TR Dizin ile Exact Uyum
+            </h3>
+
+            <div class="metrics-grid">
+
+
+                <div class="metric-box">
+
+                    <h4>
+                        Ana Alan Uyumu
+                    </h4>
+
+                    <div class="metric-value">
+                        %{{ stats.main_match }}
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            style="width: {{ stats.main_match }}%"
+                        ></div>
+
+                    </div>
+
+                    <br>
+
+                    <a
+                        class="button secondary"
+                        href="/articles?match_status=MAIN_MISMATCH"
+                    >
+                        Uyuşmayanları Gör
+                    </a>
+
+                </div>
+
+
+                <div class="metric-box">
+
+                    <h4>
+                        Alt Alan Uyumu
+                    </h4>
+
+                    <div class="metric-value">
+                        %{{ stats.sub_match }}
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            style="width: {{ stats.sub_match }}%"
+                        ></div>
+
+                    </div>
+
+                    <br>
+
+                    <a
+                        class="button secondary"
+                        href="/articles?match_status=SUB_MISMATCH"
+                    >
+                        Uyuşmayanları Gör
+                    </a>
+
+                </div>
+
+
+                <div class="metric-box">
+
+                    <h4>
+                        Leaf Exact Uyumu
+                    </h4>
+
+                    <div class="metric-value">
+                        %{{ stats.leaf_match }}
+                    </div>
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            style="width: {{ stats.leaf_match }}%"
+                        ></div>
+
+                    </div>
+
+                    <br>
+
+                    <a
+                        class="button secondary"
+                        href="/articles?match_status=LEAF_MISMATCH"
+                    >
+                        Uyuşmayanları Gör
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- GRAFİKLER -->
+        <!-- ================================================== -->
+
+        <div class="charts">
+
+
+            <div class="section chart-box">
+
+                <h3>
+                    Tahmin Edilen Ana Alan Dağılımı
+                </h3>
+
+                <canvas
+                    id="mainFieldChart"
+                ></canvas>
+
+            </div>
+
+
+            <div class="section chart-box">
+
+                <h3>
+                    En Çok Tahmin Edilen Alt Alanlar
+                </h3>
+
+                <canvas
+                    id="subFieldChart"
+                ></canvas>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- HIZLI İŞLEMLER -->
+        <!-- ================================================== -->
+
+        <div class="section">
+
+            <h3>
+                Hızlı İşlemler
+            </h3>
+
+            <div class="quick-actions">
+
+                <a
+                    class="button"
+                    href="/articles"
+                >
+                    Tüm Makaleleri Gör
+                </a>
+
+                <a
+                    class="button secondary"
+                    href="/articles?doi_status=MISSING"
+                >
+                    DOI Olmayanlar
+                </a>
+
+                <a
+                    class="button secondary"
+                    href="/articles?leaf_status=MISSING"
+                >
+                    Konusu Bulunamayanlar
+                </a>
+
+                <a
+                    class="button"
+                    href="/k-analysis"
+                >
+                    K-Means Analizine Git
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- CHART.JS -->
+    <!-- ================================================== -->
+
+    <script>
+
+        const mainData =
+            {{ main_distribution | tojson }};
+
+        const subData =
+            {{ sub_distribution | tojson }};
+
+
+        // ==================================================
+        // ANA ALAN
+        // ==================================================
+
+        new Chart(
+            document.getElementById(
+                "mainFieldChart"
+            ),
+            {
+                type: "bar",
+
+                data: {
+
+                    labels:
+                        Object.keys(
+                            mainData
+                        ),
+
+                    datasets: [
+                        {
+                            label:
+                                "Makale Sayısı",
+
+                            data:
+                                Object.values(
+                                    mainData
+                                )
+                        }
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        );
+
+
+        // ==================================================
+        // ALT ALAN
+        // ==================================================
+
+        new Chart(
+            document.getElementById(
+                "subFieldChart"
+            ),
+            {
+                type: "bar",
+
+                data: {
+
+                    labels:
+                        Object.keys(
+                            subData
+                        ),
+
+                    datasets: [
+                        {
+                            label:
+                                "Makale Sayısı",
+
+                            data:
+                                Object.values(
+                                    subData
+                                )
+                        }
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    indexAxis: "y",
+
+                    scales: {
+
+                        x: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        );
+
+    </script>
+
+</body>
+</html>
