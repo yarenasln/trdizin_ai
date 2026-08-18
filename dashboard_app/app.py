@@ -3,18 +3,13 @@ import pandas as pd
 from pathlib import Path
 
 
-# ============================================================
-# APP
-# ============================================================
-
 app = Flask(__name__)
 
 
-# ============================================================
-# DOSYA YOLLARI
-# ============================================================
+BASE_DIR = Path(
+    __file__
+).resolve().parent.parent
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATA_FILE = (
     BASE_DIR
@@ -28,28 +23,33 @@ K_RESULT_FILE = (
 )
 
 
-# ============================================================
-# VERİYİ YÜKLE
-# ============================================================
-
 df = pd.read_csv(
     DATA_FILE,
     encoding="utf-8-sig"
 )
 
-# Boolean kolonları garantiye al
+
+# ============================================================
+# BOOL KOLONLAR
+# ============================================================
+
 boolean_columns = [
     "has_doi",
     "has_abstract",
+    "has_trdizin_subject",
+
     "main_found",
     "sub_found",
     "leaf_found",
+
     "main_match",
     "sub_match",
     "leaf_match",
+
     "all_levels_found",
     "all_levels_match"
 ]
+
 
 for column in boolean_columns:
 
@@ -61,17 +61,15 @@ for column in boolean_columns:
                 df[column]
                 .astype(str)
                 .str.lower()
-                .map({
-                    "true": True,
-                    "false": False
-                })
+                .map(
+                    {
+                        "true": True,
+                        "false": False
+                    }
+                )
                 .fillna(False)
             )
 
-
-# ============================================================
-# YARDIMCI FONKSİYONLAR
-# ============================================================
 
 def safe_text(value):
 
@@ -82,6 +80,9 @@ def safe_text(value):
 
 
 def percentage(value):
+
+    if pd.isna(value):
+        return 0
 
     return round(
         value * 100,
@@ -96,12 +97,15 @@ def percentage(value):
 @app.route("/")
 def dashboard():
 
-    total_articles = len(df)
+    labeled = df[
+        df["has_trdizin_subject"]
+    ].copy()
+
 
     stats = {
 
         "total_articles":
-            total_articles,
+            len(df),
 
         "doi_found":
             int(
@@ -121,6 +125,22 @@ def dashboard():
         "abstract_missing":
             int(
                 (~df["has_abstract"]).sum()
+            ),
+
+        "trdizin_found":
+            int(
+                df[
+                    "has_trdizin_subject"
+                ].sum()
+            ),
+
+        "trdizin_missing":
+            int(
+                (
+                    ~df[
+                        "has_trdizin_subject"
+                    ]
+                ).sum()
             ),
 
         "main_found":
@@ -155,36 +175,124 @@ def dashboard():
 
         "all_levels_found":
             int(
-                df["all_levels_found"].sum()
+                df[
+                    "all_levels_found"
+                ].sum()
             ),
+
+        # SADECE ETİKETLİLERDE
+        "evaluated_articles":
+            len(labeled),
+
+        "not_evaluated":
+            len(df)
+            -
+            len(labeled),
 
         "main_match":
             percentage(
-                df["main_match"].mean()
+                labeled[
+                    "main_match"
+                ].mean()
             ),
 
         "sub_match":
             percentage(
-                df["sub_match"].mean()
+                labeled[
+                    "sub_match"
+                ].mean()
             ),
 
         "leaf_match":
             percentage(
-                df["leaf_match"].mean()
+                labeled[
+                    "leaf_match"
+                ].mean()
+            ),
+
+        "main_match_count":
+            int(
+                (
+                    labeled[
+                        "main_comparison_status"
+                    ]
+                    ==
+                    "UYUMLU"
+                ).sum()
+            ),
+
+        "main_mismatch_count":
+            int(
+                (
+                    labeled[
+                        "main_comparison_status"
+                    ]
+                    ==
+                    "UYUSMUYOR"
+                ).sum()
+            ),
+
+        "sub_match_count":
+            int(
+                (
+                    labeled[
+                        "sub_comparison_status"
+                    ]
+                    ==
+                    "UYUMLU"
+                ).sum()
+            ),
+
+        "sub_mismatch_count":
+            int(
+                (
+                    labeled[
+                        "sub_comparison_status"
+                    ]
+                    ==
+                    "UYUSMUYOR"
+                ).sum()
+            ),
+
+        "leaf_match_count":
+            int(
+                (
+                    labeled[
+                        "leaf_comparison_status"
+                    ]
+                    ==
+                    "UYUMLU"
+                ).sum()
+            ),
+
+        "leaf_mismatch_count":
+            int(
+                (
+                    labeled[
+                        "leaf_comparison_status"
+                    ]
+                    ==
+                    "UYUSMUYOR"
+                ).sum()
+            ),
+
+        "semantic_support":
+            round(
+                df[
+                    "top5_mean_similarity"
+                ].mean(),
+                4
             )
     }
 
 
-    # --------------------------------------------------------
-    # ANA ALAN DAĞILIMI
-    # --------------------------------------------------------
-
     main_distribution = (
         df[
-            df["predicted_main_field"]
+            df[
+                "predicted_main_field"
+            ]
             .fillna("")
-            !=
-            ""
+            != ""
         ]
         ["predicted_main_field"]
         .value_counts()
@@ -192,16 +300,13 @@ def dashboard():
     )
 
 
-    # --------------------------------------------------------
-    # EN ÇOK TAHMİN EDİLEN ALT ALANLAR
-    # --------------------------------------------------------
-
     sub_distribution = (
         df[
-            df["predicted_sub_field"]
+            df[
+                "predicted_sub_field"
+            ]
             .fillna("")
-            !=
-            ""
+            != ""
         ]
         ["predicted_sub_field"]
         .value_counts()
@@ -224,7 +329,7 @@ def dashboard():
 
 
 # ============================================================
-# MAKALE LİSTESİ
+# MAKALELER
 # ============================================================
 
 @app.route("/articles")
@@ -232,10 +337,6 @@ def articles():
 
     filtered = df.copy()
 
-
-    # --------------------------------------------------------
-    # ARAMA
-    # --------------------------------------------------------
 
     q = request.args.get(
         "q",
@@ -247,9 +348,7 @@ def articles():
 
         mask = (
 
-            filtered[
-                "title"
-            ]
+            filtered["title"]
             .fillna("")
             .str.contains(
                 q,
@@ -259,9 +358,7 @@ def articles():
 
             |
 
-            filtered[
-                "abstract"
-            ]
+            filtered["abstract"]
             .fillna("")
             .str.contains(
                 q,
@@ -271,9 +368,7 @@ def articles():
 
             |
 
-            filtered[
-                "doi"
-            ]
+            filtered["doi"]
             .fillna("")
             .str.contains(
                 q,
@@ -288,7 +383,34 @@ def articles():
 
 
     # --------------------------------------------------------
-    # ANA ALAN FİLTRESİ
+    # TR DİZİN ETİKET
+    # --------------------------------------------------------
+
+    trdizin_status = request.args.get(
+        "trdizin_status",
+        ""
+    )
+
+
+    if trdizin_status == "FOUND":
+
+        filtered = filtered[
+            filtered[
+                "has_trdizin_subject"
+            ]
+        ]
+
+    elif trdizin_status == "MISSING":
+
+        filtered = filtered[
+            ~filtered[
+                "has_trdizin_subject"
+            ]
+        ]
+
+
+    # --------------------------------------------------------
+    # ANA ALAN
     # --------------------------------------------------------
 
     main_field = request.args.get(
@@ -319,7 +441,7 @@ def articles():
 
 
     # --------------------------------------------------------
-    # ALT ALAN FİLTRESİ
+    # ALT ALAN
     # --------------------------------------------------------
 
     sub_field = request.args.get(
@@ -350,7 +472,7 @@ def articles():
 
 
     # --------------------------------------------------------
-    # LEAF DURUMU
+    # LEAF
     # --------------------------------------------------------
 
     leaf_status = request.args.get(
@@ -377,7 +499,7 @@ def articles():
 
 
     # --------------------------------------------------------
-    # DOI FİLTRESİ
+    # DOI
     # --------------------------------------------------------
 
     doi_status = request.args.get(
@@ -404,7 +526,7 @@ def articles():
 
 
     # --------------------------------------------------------
-    # UYUM FİLTRESİ
+    # UYUM
     # --------------------------------------------------------
 
     match_status = request.args.get(
@@ -417,49 +539,82 @@ def articles():
 
         filtered = filtered[
             filtered[
-                "main_match"
+                "main_comparison_status"
             ]
+            ==
+            "UYUMLU"
         ]
 
     elif match_status == "MAIN_MISMATCH":
 
         filtered = filtered[
-            ~filtered[
-                "main_match"
+            filtered[
+                "main_comparison_status"
             ]
+            ==
+            "UYUSMUYOR"
         ]
 
     elif match_status == "SUB_MATCH":
 
         filtered = filtered[
             filtered[
-                "sub_match"
+                "sub_comparison_status"
             ]
+            ==
+            "UYUMLU"
         ]
 
     elif match_status == "SUB_MISMATCH":
 
         filtered = filtered[
-            ~filtered[
-                "sub_match"
+            filtered[
+                "sub_comparison_status"
             ]
+            ==
+            "UYUSMUYOR"
         ]
 
     elif match_status == "LEAF_MATCH":
 
         filtered = filtered[
             filtered[
-                "leaf_match"
+                "leaf_comparison_status"
             ]
+            ==
+            "UYUMLU"
         ]
 
     elif match_status == "LEAF_MISMATCH":
 
         filtered = filtered[
+            filtered[
+                "leaf_comparison_status"
+            ]
+            ==
+            "UYUSMUYOR"
+        ]
+
+    elif match_status == "NOT_EVALUATED":
+
+        filtered = filtered[
             ~filtered[
-                "leaf_match"
+                "has_trdizin_subject"
             ]
         ]
+
+
+    # Etiketliler önce
+    filtered = filtered.sort_values(
+        [
+            "has_trdizin_subject",
+            "article_id"
+        ],
+        ascending=[
+            False,
+            True
+        ]
+    )
 
 
     # --------------------------------------------------------
@@ -491,7 +646,6 @@ def articles():
         per_page
     )
 
-
     page = max(
         1,
         min(
@@ -502,9 +656,7 @@ def articles():
 
 
     start = (
-        page
-        -
-        1
+        page - 1
     ) * per_page
 
     end = (
@@ -528,7 +680,6 @@ def articles():
             row["abstract"]
         )
 
-
         if len(abstract) > 220:
 
             abstract_preview = (
@@ -544,112 +695,33 @@ def articles():
 
         rows.append(
             {
-                "article_id":
-                    int(
-                        row[
-                            "article_id"
-                        ]
-                    ),
-
-                "doi":
-                    safe_text(
-                        row["doi"]
-                    ),
-
-                "title":
-                    safe_text(
-                        row["title"]
-                    ),
-
-                "abstract_preview":
-                    abstract_preview,
-
-                "display_language":
-                    safe_text(
-                        row[
-                            "display_language"
-                        ]
-                    ),
-
-                "predicted_main_field":
-                    safe_text(
-                        row[
-                            "predicted_main_field"
-                        ]
-                    ),
-
-                "predicted_sub_field":
-                    safe_text(
-                        row[
-                            "predicted_sub_field"
-                        ]
-                    ),
-
-                "predicted_subject":
-                    safe_text(
-                        row[
-                            "predicted_subject"
-                        ]
-                    ),
-
-                "main_found":
-                    bool(
-                        row[
-                            "main_found"
-                        ]
-                    ),
-
-                "sub_found":
-                    bool(
-                        row[
-                            "sub_found"
-                        ]
-                    ),
-
-                "leaf_found":
-                    bool(
-                        row[
-                            "leaf_found"
-                        ]
-                    ),
-
-                "main_match":
-                    bool(
-                        row[
-                            "main_match"
-                        ]
-                    ),
-
-                "sub_match":
-                    bool(
-                        row[
-                            "sub_match"
-                        ]
-                    ),
-
-                "leaf_match":
-                    bool(
-                        row[
-                            "leaf_match"
-                        ]
+                key:
+                    (
+                        ""
+                        if pd.isna(value)
+                        else value
                     )
+
+                for key, value
+                in row.to_dict().items()
             }
         )
 
+        rows[-1][
+            "abstract_preview"
+        ] = abstract_preview
 
-    # --------------------------------------------------------
-    # DROPDOWN DEĞERLERİ
-    # --------------------------------------------------------
 
     main_fields = sorted(
         [
             value
-            for value in
-            df[
+            for value
+            in df[
                 "predicted_main_field"
             ]
             .dropna()
             .unique()
+
             if str(value).strip()
         ]
     )
@@ -658,12 +730,13 @@ def articles():
     sub_fields = sorted(
         [
             value
-            for value in
-            df[
+            for value
+            in df[
                 "predicted_sub_field"
             ]
             .dropna()
             .unique()
+
             if str(value).strip()
         ]
     )
@@ -692,7 +765,7 @@ def articles():
 
 
 # ============================================================
-# MAKALE DETAYI
+# DETAY
 # ============================================================
 
 @app.route(
@@ -721,6 +794,7 @@ def article_detail(
 
 
     article = {
+
         key:
             (
                 ""
@@ -740,7 +814,7 @@ def article_detail(
 
 
 # ============================================================
-# K-MEANS ANALİZİ
+# K ANALİZİ
 # ============================================================
 
 @app.route("/k-analysis")

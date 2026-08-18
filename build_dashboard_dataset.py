@@ -11,6 +11,7 @@ import pandas as pd
 CLUSTER_FILE = "results/final_article_clusters.csv"
 PROFILE_FILE = "results/final_coherent_cluster_profiles.csv"
 SUBJECT_FILE = "trdizin_subject_hierarchy.csv"
+TERM_VALIDATION_FILE = "results/ctfidf_term_level_similarity.csv"
 
 OUTPUT_DIR = "results"
 OUTPUT_FILE = os.path.join(
@@ -24,7 +25,7 @@ LEAF_THRESHOLD = 0.30
 
 
 # ============================================================
-# 1. POSTGRESQL'DEN MAKALE BİLGİLERİNİ AL
+# POSTGRESQL
 # ============================================================
 
 print("=" * 110)
@@ -38,7 +39,6 @@ conn = psycopg2.connect(
     user="postgres",
     password="postgres"
 )
-
 
 article_query = """
 SELECT
@@ -64,16 +64,21 @@ texts = pd.read_sql_query(
 
 conn.close()
 
-print("Veritabanından gelen metin satırı:", len(texts))
+print(
+    "Veritabanından gelen metin satırı:",
+    len(texts)
+)
 
 
 # ============================================================
-# 2. AYNI MAKALEDE TÜRKÇE / İNGİLİZCE METNİ TEK SATIRA TOPLA
+# YARDIMCI FONKSİYONLAR
 # ============================================================
 
 def clean_value(value):
+
     if pd.isna(value):
         return ""
+
     return str(value).strip()
 
 
@@ -83,22 +88,43 @@ def clean_keywords(value):
         return ""
 
     try:
+
         parsed = json.loads(value)
 
         if isinstance(parsed, list):
+
             return ", ".join(
-                str(x) for x in parsed
+                str(x)
+                for x in parsed
             )
 
-    except (json.JSONDecodeError, TypeError):
+    except (
+        json.JSONDecodeError,
+        TypeError
+    ):
         pass
 
     return str(value)
 
 
-texts["title"] = texts["title"].apply(clean_value)
-texts["abstract"] = texts["abstract"].apply(clean_value)
-texts["keywords_clean"] = texts["keywords"].apply(clean_keywords)
+# ============================================================
+# MAKALEYİ TEK SATIRA İNDİR
+# ============================================================
+
+texts["title"] = (
+    texts["title"]
+    .apply(clean_value)
+)
+
+texts["abstract"] = (
+    texts["abstract"]
+    .apply(clean_value)
+)
+
+texts["keywords_clean"] = (
+    texts["keywords"]
+    .apply(clean_keywords)
+)
 
 
 article_rows = []
@@ -125,53 +151,17 @@ for article_id, group in texts.groupby("article_id"):
     ]
 
 
-    # --------------------------------------------------------
-    # Gösterilecek temel metni seç
-    # Önce Türkçe, yoksa İngilizce, o da yoksa ilk kayıt
-    # --------------------------------------------------------
-
     if not tur.empty:
+
         display_row = tur.iloc[0]
 
     elif not eng.empty:
+
         display_row = eng.iloc[0]
 
     else:
+
         display_row = first
-
-
-    title_tr = (
-        tur.iloc[0]["title"]
-        if not tur.empty
-        else ""
-    )
-
-    abstract_tr = (
-        tur.iloc[0]["abstract"]
-        if not tur.empty
-        else ""
-    )
-
-    title_en = (
-        eng.iloc[0]["title"]
-        if not eng.empty
-        else ""
-    )
-
-    abstract_en = (
-        eng.iloc[0]["abstract"]
-        if not eng.empty
-        else ""
-    )
-
-
-    languages = sorted(
-        set(
-            group["language"]
-            .dropna()
-            .astype(str)
-        )
-    )
 
 
     article_rows.append(
@@ -183,7 +173,9 @@ for article_id, group in texts.groupby("article_id"):
                 first["external_id"],
 
             "doi":
-                clean_value(first["doi"]),
+                clean_value(
+                    first["doi"]
+                ),
 
             "publication_year":
                 first["publication_year"],
@@ -194,7 +186,15 @@ for article_id, group in texts.groupby("article_id"):
                 ),
 
             "languages":
-                " || ".join(languages),
+                " || ".join(
+                    sorted(
+                        set(
+                            group["language"]
+                            .dropna()
+                            .astype(str)
+                        )
+                    )
+                ),
 
             "display_language":
                 clean_value(
@@ -213,22 +213,28 @@ for article_id, group in texts.groupby("article_id"):
 
             "keywords":
                 clean_value(
-                    display_row[
-                        "keywords_clean"
-                    ]
+                    display_row["keywords_clean"]
                 ),
 
             "title_tr":
-                title_tr,
+                tur.iloc[0]["title"]
+                if not tur.empty
+                else "",
 
             "abstract_tr":
-                abstract_tr,
+                tur.iloc[0]["abstract"]
+                if not tur.empty
+                else "",
 
             "title_en":
-                title_en,
+                eng.iloc[0]["title"]
+                if not eng.empty
+                else "",
 
             "abstract_en":
-                abstract_en
+                eng.iloc[0]["abstract"]
+                if not eng.empty
+                else ""
         }
     )
 
@@ -244,7 +250,7 @@ print(
 
 
 # ============================================================
-# 3. FINAL CLUSTER SONUÇLARINI OKU
+# SONUÇ DOSYALARI
 # ============================================================
 
 clusters = pd.read_csv(
@@ -262,44 +268,40 @@ subjects = pd.read_csv(
     encoding="utf-8-sig"
 )
 
+term_validation = pd.read_csv(
+    TERM_VALIDATION_FILE,
+    encoding="utf-8-sig"
+)
+
 
 print(
     "Cluster sonucu bulunan makale:",
     clusters["article_id"].nunique()
 )
 
+print(
+    "Term-level doğrulama bulunan cluster:",
+    term_validation["cluster_id"].nunique()
+)
+
 
 # ============================================================
-# 4. TR DİZİN ETİKETLERİNİ MAKALE BAZINDA TOPLA
+# TR DİZİN ETİKETLERİ
 # ============================================================
 
-subjects["main_field"] = (
-    subjects["main_field"]
-    .fillna("")
-    .astype(str)
-    .str.strip()
-)
+for column in [
+    "main_field",
+    "sub_field",
+    "leaf_subject",
+    "subject_fullname"
+]:
 
-subjects["sub_field"] = (
-    subjects["sub_field"]
-    .fillna("")
-    .astype(str)
-    .str.strip()
-)
-
-subjects["leaf_subject"] = (
-    subjects["leaf_subject"]
-    .fillna("")
-    .astype(str)
-    .str.strip()
-)
-
-subjects["subject_fullname"] = (
-    subjects["subject_fullname"]
-    .fillna("")
-    .astype(str)
-    .str.strip()
-)
+    subjects[column] = (
+        subjects[column]
+        .fillna("")
+        .astype(str)
+        .str.strip()
+    )
 
 
 def join_unique(values):
@@ -310,11 +312,7 @@ def join_unique(values):
 
         value = str(value).strip()
 
-        if (
-            value
-            and
-            value not in cleaned
-        ):
+        if value and value not in cleaned:
             cleaned.append(value)
 
     return " || ".join(cleaned)
@@ -324,6 +322,7 @@ subject_summary = (
     subjects
     .groupby("article_id")
     .agg(
+
         trdizin_main_fields=(
             "main_field",
             join_unique
@@ -349,7 +348,7 @@ subject_summary = (
 
 
 # ============================================================
-# 5. CLUSTER + PROFİL
+# CLUSTER + PROFİL
 # ============================================================
 
 prediction = clusters.merge(
@@ -371,7 +370,27 @@ prediction = clusters.merge(
 
 
 # ============================================================
-# 6. BULUNDU / BULUNAMADI
+# c-TF-IDF TERM DOĞRULAMA
+# ============================================================
+
+prediction = prediction.merge(
+    term_validation[
+        [
+            "cluster_id",
+            "max_term_similarity",
+            "mean_term_similarity",
+            "median_term_similarity",
+            "top5_mean_similarity",
+            "best_matching_terms"
+        ]
+    ],
+    on="cluster_id",
+    how="left"
+)
+
+
+# ============================================================
+# BULUNDU / BULUNAMADI
 # ============================================================
 
 prediction["main_found"] = (
@@ -381,47 +400,37 @@ prediction["main_found"] = (
 )
 
 prediction["sub_found"] = (
-    prediction[
-        "sub_confidence_within_main"
-    ]
+    prediction["sub_confidence_within_main"]
     >=
     SUB_THRESHOLD
 )
 
 prediction["leaf_found"] = (
-    prediction[
-        "leaf_confidence_within_sub"
-    ]
+    prediction["leaf_confidence_within_sub"]
     >=
     LEAF_THRESHOLD
 )
 
 
-# Güven yeterli değilse kullanıcıya
-# tahmini kesin sonuç gibi göstermiyoruz.
-
 prediction["predicted_main_field"] = (
-    prediction[
-        "dominant_main_field"
-    ].where(
+    prediction["dominant_main_field"]
+    .where(
         prediction["main_found"],
         ""
     )
 )
 
 prediction["predicted_sub_field"] = (
-    prediction[
-        "dominant_sub_field"
-    ].where(
+    prediction["dominant_sub_field"]
+    .where(
         prediction["sub_found"],
         ""
     )
 )
 
 prediction["predicted_subject"] = (
-    prediction[
-        "top_subject"
-    ].where(
+    prediction["top_subject"]
+    .where(
         prediction["leaf_found"],
         ""
     )
@@ -429,7 +438,7 @@ prediction["predicted_subject"] = (
 
 
 # ============================================================
-# 7. TÜM VERİLERİ BİRLEŞTİR
+# BİRLEŞTİR
 # ============================================================
 
 dashboard = (
@@ -448,7 +457,36 @@ dashboard = (
 
 
 # ============================================================
-# 8. TR DİZİN İLE UYUM KONTROLLERİ
+# DOSYA / ETİKET DURUMLARI
+# ============================================================
+
+dashboard["has_doi"] = (
+    dashboard["doi"]
+    .fillna("")
+    .astype(str)
+    .str.strip()
+    != ""
+)
+
+dashboard["has_abstract"] = (
+    dashboard["abstract"]
+    .fillna("")
+    .astype(str)
+    .str.strip()
+    != ""
+)
+
+dashboard["has_trdizin_subject"] = (
+    dashboard["trdizin_subject_paths"]
+    .fillna("")
+    .astype(str)
+    .str.strip()
+    != ""
+)
+
+
+# ============================================================
+# UYUM FONKSİYONLARI
 # ============================================================
 
 def split_labels(value):
@@ -468,56 +506,116 @@ def exact_match(
     actual_string
 ):
 
-    if pd.isna(predicted):
-        return False
-
     predicted = str(
         predicted
+        if not pd.isna(predicted)
+        else ""
     ).strip()
 
     if not predicted:
         return False
 
-    actual = split_labels(
-        actual_string
+    return (
+        predicted
+        in
+        split_labels(actual_string)
     )
 
-    return predicted in actual
 
+# ============================================================
+# EXACT MATCH
+# ============================================================
 
 dashboard["main_match"] = dashboard.apply(
     lambda row:
         exact_match(
             row["predicted_main_field"],
             row["trdizin_main_fields"]
-        ),
+        )
+        if row["has_trdizin_subject"]
+        else False,
     axis=1
 )
-
 
 dashboard["sub_match"] = dashboard.apply(
     lambda row:
         exact_match(
             row["predicted_sub_field"],
             row["trdizin_sub_fields"]
-        ),
+        )
+        if row["has_trdizin_subject"]
+        else False,
     axis=1
 )
-
 
 dashboard["leaf_match"] = dashboard.apply(
     lambda row:
         exact_match(
             row["predicted_subject"],
             row["trdizin_subject_paths"]
-        ),
+        )
+        if row["has_trdizin_subject"]
+        else False,
     axis=1
 )
 
 
 # ============================================================
-# 9. GENEL DURUM
+# 3 DURUMLU KARŞILAŞTIRMA
 # ============================================================
+#
+# UYUMLU
+# UYUSMUYOR
+# DEGERLENDIRILEMEDI
+# ============================================================
+
+def comparison_status(
+    has_trdizin,
+    match
+):
+
+    if not has_trdizin:
+        return "DEGERLENDIRILEMEDI"
+
+    if match:
+        return "UYUMLU"
+
+    return "UYUSMUYOR"
+
+
+dashboard["main_comparison_status"] = (
+    dashboard.apply(
+        lambda row:
+            comparison_status(
+                row["has_trdizin_subject"],
+                row["main_match"]
+            ),
+        axis=1
+    )
+)
+
+dashboard["sub_comparison_status"] = (
+    dashboard.apply(
+        lambda row:
+            comparison_status(
+                row["has_trdizin_subject"],
+                row["sub_match"]
+            ),
+        axis=1
+    )
+)
+
+dashboard["leaf_comparison_status"] = (
+    dashboard.apply(
+        lambda row:
+            comparison_status(
+                row["has_trdizin_subject"],
+                row["leaf_match"]
+            ),
+        axis=1
+    )
+)
+
 
 dashboard["all_levels_found"] = (
     dashboard["main_found"]
@@ -529,6 +627,8 @@ dashboard["all_levels_found"] = (
 
 
 dashboard["all_levels_match"] = (
+    dashboard["has_trdizin_subject"]
+    &
     dashboard["main_match"]
     &
     dashboard["sub_match"]
@@ -537,36 +637,15 @@ dashboard["all_levels_match"] = (
 )
 
 
-# DOI var mı?
-
-dashboard["has_doi"] = (
-    dashboard["doi"]
-    .fillna("")
-    .astype(str)
-    .str.strip()
-    != ""
-)
-
-
-# Abstract var mı?
-
-dashboard["has_abstract"] = (
-    dashboard["abstract"]
-    .fillna("")
-    .astype(str)
-    .str.strip()
-    != ""
-)
-
-
 # ============================================================
-# 10. ARAYÜZ İÇİN KOLON SIRASI
+# KOLONLAR
 # ============================================================
 
 columns = [
 
     "article_id",
     "external_id",
+
     "doi",
     "has_doi",
 
@@ -591,6 +670,12 @@ columns = [
     "cluster_size",
     "cluster_similarity",
 
+    "max_term_similarity",
+    "top5_mean_similarity",
+    "mean_term_similarity",
+    "median_term_similarity",
+    "best_matching_terms",
+
     "predicted_main_field",
     "main_confidence",
     "main_found",
@@ -608,9 +693,15 @@ columns = [
     "trdizin_leaf_subjects",
     "trdizin_subject_paths",
 
+    "has_trdizin_subject",
+
     "main_match",
     "sub_match",
     "leaf_match",
+
+    "main_comparison_status",
+    "sub_comparison_status",
+    "leaf_comparison_status",
 
     "all_levels_found",
     "all_levels_match"
@@ -623,7 +714,7 @@ dashboard = dashboard[
 
 
 # ============================================================
-# 11. GENEL İSTATİSTİKLER
+# İSTATİSTİKLER
 # ============================================================
 
 print("\n" + "=" * 110)
@@ -636,110 +727,127 @@ print(
 )
 
 print(
-    "DOI bulunan:",
+    "TR Dizin etiketi bulunan:",
     int(
-        dashboard["has_doi"].sum()
+        dashboard["has_trdizin_subject"].sum()
     )
 )
 
 print(
-    "DOI bulunmayan:",
+    "TR Dizin etiketi bulunmayan:",
     int(
-        (~dashboard["has_doi"]).sum()
-    )
-)
-
-print(
-    "Abstract bulunan:",
-    int(
-        dashboard["has_abstract"].sum()
-    )
-)
-
-print(
-    "Abstract bulunmayan:",
-    int(
-        (~dashboard["has_abstract"]).sum()
+        (~dashboard["has_trdizin_subject"]).sum()
     )
 )
 
 
-print("\nTAHMİN DURUMU")
-print("-" * 60)
+# ============================================================
+# SADECE TR DİZİN ETİKETİ OLANLAR
+# ============================================================
 
-print(
-    "Ana alan bulunan:",
-    int(
-        dashboard["main_found"].sum()
-    )
-)
-
-print(
-    "Ana alan bulunamayan:",
-    int(
-        (~dashboard["main_found"]).sum()
-    )
-)
-
-print(
-    "Alt alan bulunan:",
-    int(
-        dashboard["sub_found"].sum()
-    )
-)
-
-print(
-    "Alt alan bulunamayan:",
-    int(
-        (~dashboard["sub_found"]).sum()
-    )
-)
-
-print(
-    "Leaf konu bulunan:",
-    int(
-        dashboard["leaf_found"].sum()
-    )
-)
-
-print(
-    "Leaf konu bulunamayan:",
-    int(
-        (~dashboard["leaf_found"]).sum()
-    )
-)
-
-print(
-    "Üç seviye de bulunan:",
-    int(
-        dashboard[
-            "all_levels_found"
-        ].sum()
-    )
-)
+labeled_dashboard = dashboard[
+    dashboard["has_trdizin_subject"]
+].copy()
 
 
 print("\nTR DİZİN EXACT UYUM")
 print("-" * 60)
 
 print(
+    "Değerlendirilen makale:",
+    len(labeled_dashboard)
+)
+
+print(
+    "Değerlendirme dışı:",
+    len(dashboard)
+    -
+    len(labeled_dashboard)
+)
+
+
+print(
     "Ana alan uyumu:",
-    f"{dashboard['main_match'].mean():.2%}"
+    f"{labeled_dashboard['main_match'].mean():.2%}"
 )
 
 print(
     "Alt alan uyumu:",
-    f"{dashboard['sub_match'].mean():.2%}"
+    f"{labeled_dashboard['sub_match'].mean():.2%}"
 )
 
 print(
     "Leaf exact uyumu:",
-    f"{dashboard['leaf_match'].mean():.2%}"
+    f"{labeled_dashboard['leaf_match'].mean():.2%}"
+)
+
+
+print("\nUYUM DURUMLARI")
+print("-" * 60)
+
+print(
+    "Ana Alan:"
+)
+
+print(
+    dashboard[
+        "main_comparison_status"
+    ]
+    .value_counts()
+    .to_string()
+)
+
+print(
+    "\nAlt Alan:"
+)
+
+print(
+    dashboard[
+        "sub_comparison_status"
+    ]
+    .value_counts()
+    .to_string()
+)
+
+print(
+    "\nLeaf:"
+)
+
+print(
+    dashboard[
+        "leaf_comparison_status"
+    ]
+    .value_counts()
+    .to_string()
+)
+
+
+print("\nSEMANTIC SUPPORT")
+print("-" * 60)
+
+print(
+    "Ortalama Top-5:",
+    round(
+        dashboard[
+            "top5_mean_similarity"
+        ].mean(),
+        4
+    )
+)
+
+print(
+    "Medyan Top-5:",
+    round(
+        dashboard[
+            "top5_mean_similarity"
+        ].median(),
+        4
+    )
 )
 
 
 # ============================================================
-# 12. KAYDET
+# KAYDET
 # ============================================================
 
 os.makedirs(
